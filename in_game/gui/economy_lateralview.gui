@@ -1098,77 +1098,8 @@ lateralview = {
 																margin = { 5 0 }
 																spacing = 2
 
-																widget = {
-																	using = layoutpolicy_expanding
-																	economy_slider = {
-																		parentanchor = left|vcenter
-																		size = { 120 10 }
-																		min = 0
-																		max = 1
-																		mincap = "[TaxRateSetting.GetMin]"
-																		maxcap = "[TaxRateSetting.GetMax]"
-
-																		tooltipwidget = {
-																			ContextualTooltipType = {
-																				blockoverride "title_icon" {
-																					icon = {
-																						using = tooltip_title_icon_size
-																						texture = "[GetEstateIcon(TaxRateSetting.GetEstate.GetType)]"
-																						texture_density = 2
-																						datacontext = "[TaxRateSetting.GetEstate]"
-																						datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
-																						tooltipwidget = {
-																							using = Estate_tooltip
-																						}
-																					}
-																				}
-		
-																				blockoverride "title_text" {
-																					datacontext = "[TaxRateSetting.GetEstate]"
-																					text = "ESTATE_TAX_MIN_MAX_T"
-																				}
-
-																				blockoverride "concept_link" {
-																					text = [tax|E]
-																				}
-																				
-																				blockoverride "tooltip_content" {
-																					datacontext = "[TaxRateSetting.GetEstate]"
-																					TooltipTextBlock = {																						
-																						blockoverride "text"	{
-																							text = "ESTATE_CURRENT_TAX_TT"
-																						}
-																					}
-																					
-																					TooltipStringPairList = {
-																						textcontext = "[TaxRateSetting.GetTaxSettingsTooltip]"
-																					}
-
-																					TooltipTextBlock = {
-																						visible = "[TaxRateSetting.IsUsingAutoTaxRate]"																			
-																						blockoverride "text"	{
-																							text = "ESTATE_CURRENT_TAX_AUTOMATED_TT"
-																						}
-																					}
-																				}
-																			}
-																		}
-
-																		value = "[TaxRateSetting.GetDefault]"
-																		onvaluechanged = "[TaxRateSetting.OnTaxChanged]"
-																		onchangefinish = "[TaxRateSetting.Post]"
-
-																		enabled = "[And(TaxRateSetting.IsTaxRateSliderEnabled, Or(TaxRateSetting.IsTaxRateSettingIncEnabled, TaxRateSetting.IsTaxRateSettingDecEnabled))]"
-																		alpha = "[TransparentIfFalse(Not(IsPlayerAIEnabled('finances')))]"
-																		blockoverride "economy_slider_inc_button_config"{
-																			enabled = "[TaxRateSetting.IsTaxRateSettingIncEnabled]"
-																		}
-																		blockoverride "economy_slider_dec_button_config"{
-																			enabled = "[TaxRateSetting.IsTaxRateSettingDecEnabled]"
-																		}
-																	}
-																}
-
+																# replaces the widget that was here and contains the economy_slider
+																using = smart_taxes_economy_lateralview
 
 																text_single = {
 																	autoresize = no
@@ -1218,6 +1149,8 @@ lateralview = {
 																		texture_density = 2
 																	}
 																}
+
+																smart_taxes_enabled_checkbox = {}
 
 																button_checkbox_auto = {
 																	
