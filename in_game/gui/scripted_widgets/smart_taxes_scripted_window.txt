@@ -1,0 +1,1 @@
+gui/smart_taxes_hidden_window.gui = smart_taxes_hidden_window

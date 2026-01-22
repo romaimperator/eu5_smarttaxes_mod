@@ -1,0 +1,295 @@
+template smart_taxes_economy_lateralview {
+	smart_taxes_estate_tax_slider = {}
+	overlappingitembox = {
+		visible = yes
+		state = {
+			name = taxing_initial_init
+			trigger_on_create = yes
+			next = taxing_init
+			on_finish = "[PdxGuiWidget.TriggerAnimation('taxing_init')]"
+		}
+
+		state = {
+			name = taxing_init
+			duration = 1
+			on_start = "[PdxGuiWidget.Hide]"
+			on_finish = "[PdxGuiWidget.Show]"
+			on_finish = "[GetScriptedGui('taxing_setup').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			next = taxing_init
+		}
+	}
+	smart_taxes_satisfaction_target = {
+		visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+	}
+}
+
+types SmartTaxes {
+	type smart_taxes_estate_tax_slider = widget {
+		using = layoutpolicy_expanding
+		economy_slider = {
+			visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+			parentanchor = left|vcenter
+			size = { 60 10 }
+			min = 0
+			max = 1
+			mincap = "[GuiScope.AddScope('current_tax_rate', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetEconomy.GetTaxRate(TaxRateSetting.GetEstate.GetType))).AddScope('satisfaction_equilibrium', MakeScopeValue(TaxRateSetting.GetImpactValue)).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('global_recovery', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetModifier('global_estate_satisfaction_recovery'))).AddScope('current_satisfaction', MakeScopeValue(TaxRateSetting.GetEstate.GetSatisfaction)).AddScope('max_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMaxTaxValue)).AddScope('min_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMinTaxValue)).ScriptValue('smart_taxes_compute_tax_rate')]"
+			maxcap = "[GuiScope.AddScope('current_tax_rate', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetEconomy.GetTaxRate(TaxRateSetting.GetEstate.GetType))).AddScope('satisfaction_equilibrium', MakeScopeValue(TaxRateSetting.GetImpactValue)).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('global_recovery', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetModifier('global_estate_satisfaction_recovery'))).AddScope('current_satisfaction', MakeScopeValue(TaxRateSetting.GetEstate.GetSatisfaction)).AddScope('max_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMaxTaxValue)).AddScope('min_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMinTaxValue)).ScriptValue('smart_taxes_compute_tax_rate')]"
+
+			tooltipwidget = {
+				ContextualTooltipType = {
+					blockoverride "title_icon" {
+						icon = {
+							using = tooltip_title_icon_size
+							texture = "[GetEstateIcon(TaxRateSetting.GetEstate.GetType)]"
+							texture_density = 2
+							datacontext = "[TaxRateSetting.GetEstate]"
+							datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
+							tooltipwidget = {
+								using = Estate_tooltip
+							}
+						}
+					}
+
+					blockoverride "title_text" {
+						datacontext = "[TaxRateSetting.GetEstate]"
+						text = "ESTATE_TAX_MIN_MAX_T"
+					}
+
+					blockoverride "concept_link" {
+						text = [tax|E]
+					}
+					
+					blockoverride "tooltip_content" {
+						datacontext = "[TaxRateSetting.GetEstate]"
+						TooltipTextBlock = {																						
+							blockoverride "text"	{
+								text = "ESTATE_CURRENT_TAX_TT"
+							}
+						}
+						
+						TooltipStringPairList = {
+							textcontext = "[TaxRateSetting.GetTaxSettingsTooltip]"
+						}
+
+						TooltipTextBlock = {
+							visible = "[TaxRateSetting.IsUsingAutoTaxRate]"																			
+							blockoverride "text"	{
+								text = "ESTATE_CURRENT_TAX_AUTOMATED_TT"
+							}
+						}
+					}
+				}
+			}
+
+			value = "[TaxRateSetting.GetDefault]"
+			onvaluechanged = "[TaxRateSetting.OnTaxChanged]"
+			onchangefinish = "[TaxRateSetting.Post]"
+
+			enabled = "[And(TaxRateSetting.IsTaxRateSliderEnabled, Or(TaxRateSetting.IsTaxRateSettingIncEnabled, TaxRateSetting.IsTaxRateSettingDecEnabled))]"
+			alpha = "[TransparentIfFalse(Not(IsPlayerAIEnabled('finances')))]"
+			blockoverride "economy_slider_inc_button_config"{
+				enabled = "[TaxRateSetting.IsTaxRateSettingIncEnabled]"
+			}
+			blockoverride "economy_slider_dec_button_config"{
+				enabled = "[TaxRateSetting.IsTaxRateSettingDecEnabled]"
+			}
+		}
+		economy_slider = {
+			visible = "[Not(GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End))]"
+			parentanchor = left|vcenter
+			size = { 120 10 }
+			min = 0
+			max = 1
+			mincap = "[TaxRateSetting.GetMin]"
+			maxcap = "[TaxRateSetting.GetMax]"
+
+			tooltipwidget = {
+				ContextualTooltipType = {
+					blockoverride "title_icon" {
+						icon = {
+							using = tooltip_title_icon_size
+							texture = "[GetEstateIcon(TaxRateSetting.GetEstate.GetType)]"
+							texture_density = 2
+							datacontext = "[TaxRateSetting.GetEstate]"
+							datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
+							tooltipwidget = {
+								using = Estate_tooltip
+							}
+						}
+					}
+
+					blockoverride "title_text" {
+						datacontext = "[TaxRateSetting.GetEstate]"
+						text = "ESTATE_TAX_MIN_MAX_T"
+					}
+
+					blockoverride "concept_link" {
+						text = [tax|E]
+					}
+					
+					blockoverride "tooltip_content" {
+						datacontext = "[TaxRateSetting.GetEstate]"
+						TooltipTextBlock = {																						
+							blockoverride "text"	{
+								text = "ESTATE_CURRENT_TAX_TT"
+							}
+						}
+						
+						TooltipStringPairList = {
+							textcontext = "[TaxRateSetting.GetTaxSettingsTooltip]"
+						}
+
+						TooltipTextBlock = {
+							visible = "[TaxRateSetting.IsUsingAutoTaxRate]"																			
+							blockoverride "text"	{
+								text = "ESTATE_CURRENT_TAX_AUTOMATED_TT"
+							}
+						}
+					}
+				}
+			}
+
+			value = "[TaxRateSetting.GetDefault]"
+			onvaluechanged = "[TaxRateSetting.OnTaxChanged]"
+			onchangefinish = "[TaxRateSetting.Post]"
+
+			enabled = "[And(TaxRateSetting.IsTaxRateSliderEnabled, Or(TaxRateSetting.IsTaxRateSettingIncEnabled, TaxRateSetting.IsTaxRateSettingDecEnabled))]"
+			alpha = "[TransparentIfFalse(Not(IsPlayerAIEnabled('finances')))]"
+			blockoverride "economy_slider_inc_button_config"{
+				enabled = "[TaxRateSetting.IsTaxRateSettingIncEnabled]"
+			}
+			blockoverride "economy_slider_dec_button_config"{
+				enabled = "[TaxRateSetting.IsTaxRateSettingDecEnabled]"
+			}
+		}
+	}
+
+	type smart_taxes_satisfaction_target = widget {
+		size = { 65 24 }
+		hbox = {
+			datacontext = "[TaxRateSetting.GetEstate]"
+			datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
+			# margin = { 5 0 }
+			# spacing = 3
+		
+			using = bg_number_container_bckg
+			blockoverride "number_container_extra" {
+				alpha = 0.4
+				margin = {2 4}
+			}
+
+			button_square_minus = {
+				size = { 18 18 }
+				enabled = yes
+				
+				tooltipwidget = { BasicFunctionalTooltip = {} }
+				action_tooltip = {
+					click_type = left
+					click_mode = single
+					click_modifier = default
+					
+					enabled = yes
+					title = "-1%"
+					on_action = "[GetScriptedGui('subtract_one_percent').Execute(GuiScope.AddScope('country', Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
+				}
+
+				action_tooltip = {
+					click_type = left
+					click_mode = single
+					click_modifier = alt
+
+					enabled = yes
+					title = "-10%"
+					on_action = "[GetScriptedGui('subtract_ten_percent').Execute(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
+				}
+
+				action_tooltip = {
+					click_type = left
+					click_mode = single
+					click_modifier = shift
+
+					enabled = yes
+					title = "Set to 0%"
+					on_action = "[GetScriptedGui('set_to_zero_percent').Execute(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
+				}
+
+				action_tooltip = {
+					click_type = left
+					click_mode = single
+					click_modifier = ctrl
+
+					enabled = yes
+					title = "-5%"
+					on_action = "[GetScriptedGui('subtract_five_percent').Execute(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
+				}
+			}
+
+			text_single = {
+				size = {35 20}
+				autoresize = no
+				using = Font_Size_Small
+				raw_text = "[GuiScope.AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).ScriptValue('current_target_satisfaction')|%0]"
+				align = center
+			}
+			
+			# tooltipwidget = {
+			# 	SimpleContextualTooltipType = {
+			# 		blockoverride "title_icon" {
+			# 			icon = {
+			# 				using = tooltip_title_icon_size
+			# 				texture = "[GetConceptTexture('goods')]"
+			# 			}
+			# 		}
+					
+			# 		lowpriotextcontext = "MOVING_GOODS_AMOUNT_SIMPLE"
+			# 	}
+			# }
+
+			button_square_plus = {
+				size = { 18 18 }
+				enabled = yes
+
+				tooltipwidget = { BasicFunctionalTooltip = {} }
+				action_tooltip = {
+					click_type = left
+					click_mode = single
+					click_modifier = default
+
+					enabled = yes
+					title = "+1%"
+					on_action = "[GetScriptedGui('add_one_percent').Execute(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
+				}
+
+				action_tooltip = {
+					click_type = left
+					click_mode = single
+					click_modifier = alt
+
+					enabled = yes
+					title = "+10%"									
+					on_action = "[GetScriptedGui('add_ten_percent').Execute(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
+				}
+
+				action_tooltip = {
+					click_type = left
+					click_mode = single
+					click_modifier = shift
+
+					enabled = yes
+					title = "Set to 100%"					
+					on_action = "[GetScriptedGui('set_to_one_hundred_percent').Execute(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
+				}
+
+				action_tooltip = {
+					click_type = left
+					click_mode = single
+					click_modifier = ctrl
+
+					enabled = yes
+					title = "+5%"					
+					on_action = "[GetScriptedGui('add_five_percent').Execute(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
+				}
+			}
+		}
+	}
+}

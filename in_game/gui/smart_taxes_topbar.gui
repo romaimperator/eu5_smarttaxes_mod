@@ -1,0 +1,96 @@
+types SmartTaxes {
+	type smart_taxes_topbar = widget {
+		state = {
+			name = smart_taxes_hide
+			trigger_on_create = yes
+			next = smart_taxes_show
+			on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_show')]"
+		}
+		state = {
+			name = smart_taxes_show
+			duration = 0.1
+			on_finish = "[GetScriptedGui('smart_taxes_topbar_hide').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			next = smart_taxes_hide
+		}
+		alpha = 1
+		visible = "[GetScriptedGui('smart_taxes_show_topbar_to_recompute').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		datacontext = "[GetEconomyView]"
+		datamodel = "[EconomyView.GetTaxRateSettings]"
+		item = {
+			smart_taxes_estate_tax_slider = {}
+			# widget = {
+			# 	using = layoutpolicy_expanding
+			# 	economy_slider = {
+			# 		parentanchor = left|vcenter
+			# 		size = { 70 10 }
+			# 		min = 0
+			# 		max = 1
+			# 		mincap = "[GuiScope.AddScope('current_tax_rate', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetEconomy.GetTaxRate(TaxRateSetting.GetEstate.GetType))).AddScope('satisfaction_equilibrium', MakeScopeValue(TaxRateSetting.GetImpactValue)).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('global_recovery', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetModifier('global_estate_satisfaction_recovery'))).AddScope('current_satisfaction', MakeScopeValue(TaxRateSetting.GetEstate.GetSatisfaction)).AddScope('max_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMaxTaxValue)).AddScope('min_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMinTaxValue)).ScriptValue('smart_taxes_compute_tax_rate')]"
+			# 		maxcap = "[GuiScope.AddScope('current_tax_rate', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetEconomy.GetTaxRate(TaxRateSetting.GetEstate.GetType))).AddScope('satisfaction_equilibrium', MakeScopeValue(TaxRateSetting.GetImpactValue)).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('global_recovery', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetModifier('global_estate_satisfaction_recovery'))).AddScope('current_satisfaction', MakeScopeValue(TaxRateSetting.GetEstate.GetSatisfaction)).AddScope('max_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMaxTaxValue)).AddScope('min_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMinTaxValue)).ScriptValue('smart_taxes_compute_tax_rate')]"
+					
+			# 		step = 0.01
+			# 		wheelstep = 0.01
+
+			# 		tooltipwidget = {
+			# 			ContextualTooltipType = {
+			# 				blockoverride "title_icon" {
+			# 					icon = {
+			# 						using = tooltip_title_icon_size
+			# 						texture = "[GetEstateIcon(TaxRateSetting.GetEstate.GetType)]"
+			# 						texture_density = 2
+			# 						datacontext = "[TaxRateSetting.GetEstate]"
+			# 						datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
+			# 						tooltipwidget = {
+			# 							using = Estate_tooltip
+			# 						}
+			# 					}
+			# 				}
+
+			# 				blockoverride "title_text" {
+			# 					datacontext = "[TaxRateSetting.GetEstate]"
+			# 					text = "ESTATE_TAX_MIN_MAX_T"
+			# 				}
+
+			# 				blockoverride "concept_link" {
+			# 					text = [tax|E]
+			# 				}
+							
+			# 				blockoverride "tooltip_content" {
+			# 					datacontext = "[TaxRateSetting.GetEstate]"
+			# 					TooltipTextBlock = {																						
+			# 						blockoverride "text"	{
+			# 							text = "ESTATE_CURRENT_TAX_TT"
+			# 						}
+			# 					}
+								
+			# 					TooltipStringPairList = {
+			# 						textcontext = "[TaxRateSetting.GetTaxSettingsTooltip]"
+			# 					}
+
+			# 					TooltipTextBlock = {
+			# 						visible = "[TaxRateSetting.IsUsingAutoTaxRate]"																			
+			# 						blockoverride "text"	{
+			# 							text = "ESTATE_CURRENT_TAX_AUTOMATED_TT"
+			# 						}
+			# 					}
+			# 				}
+			# 			}
+			# 		}
+
+			# 		value = "[TaxRateSetting.GetDefault]"
+			# 		onvaluechanged = "[TaxRateSetting.OnTaxChanged]"
+			# 		onchangefinish = "[TaxRateSetting.Post]"
+
+			# 		enabled = "[And(TaxRateSetting.IsTaxRateSliderEnabled, Or(TaxRateSetting.IsTaxRateSettingIncEnabled, TaxRateSetting.IsTaxRateSettingDecEnabled))]"
+			# 		alpha = "[TransparentIfFalse(Not(IsPlayerAIEnabled('finances')))]"
+			# 		blockoverride "economy_slider_inc_button_config"{
+			# 			enabled = "[TaxRateSetting.IsTaxRateSettingIncEnabled]"
+			# 		}
+			# 		blockoverride "economy_slider_dec_button_config"{
+			# 			enabled = "[TaxRateSetting.IsTaxRateSettingDecEnabled]"
+			# 		}
+			# 	}
+			# }
+		}
+	}
+}

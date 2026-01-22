@@ -1,0 +1,31 @@
+monthly_country_pulse = {
+	on_actions = {
+		smart_taxes_monthly_tick
+	}
+}
+
+smart_taxes_monthly_tick = {
+	trigger = {
+		is_ai = no
+	}
+
+	on_actions = {
+		smart_taxes_daily_tick
+		delay = { days = 7 }
+		smart_taxes_daily_tick
+		delay = { days = 14 }
+		smart_taxes_daily_tick
+		delay = { days = 21 }
+		smart_taxes_daily_tick
+	}
+	effect = {
+		debug_log = "Smart Taxes: running monthly tick"
+	}
+}
+
+smart_taxes_daily_tick = {
+	effect = {
+		debug_log = "Smart Taxes: running daily tick"
+		set_variable = { name = smart_taxes_recalculate value = yes }
+	}
+}

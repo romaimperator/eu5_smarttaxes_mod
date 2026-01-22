@@ -1,0 +1,18 @@
+widget = {
+	name = smart_taxes_hidden_window
+	widgetid = smart_taxes_hidden_window
+	layer = bottom
+	alpha = 1
+	visible = "[EqualTo_CFixedPoint('(CFixedPoint)0', '(CFixedPoint)0')]"
+	size = { 100% 100% }
+	
+	basic_dialog = {
+		position = { -10000 1 }
+		vbox = {
+			textbox = {
+				raw_text = "HI"
+			}
+			smart_taxes_topbar = {}
+		}
+	}
+}
