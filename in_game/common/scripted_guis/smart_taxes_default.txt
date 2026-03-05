@@ -1,4 +1,4 @@
-taxing_setup = {
+﻿taxing_setup = {
 	effect = {
 		root = {
 			if = { limit = { not = { exists = var:nobles_estate_target } }

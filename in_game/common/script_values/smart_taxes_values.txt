@@ -1,4 +1,4 @@
-smart_taxes_compute_tax_rate = {
+﻿smart_taxes_compute_tax_rate = {
 	value = scope:satisfaction_equilibrium
 	add = scope:current_tax_rate
 	subtract = {

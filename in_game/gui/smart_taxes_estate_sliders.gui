@@ -1,4 +1,4 @@
-template smart_taxes_economy_lateralview {
+﻿template smart_taxes_economy_lateralview {
 	smart_taxes_estate_tax_slider = {}
 	overlappingitembox = {
 		visible = yes
@@ -58,21 +58,21 @@ types SmartTaxes {
 					blockoverride "concept_link" {
 						text = [tax|E]
 					}
-					
+
 					blockoverride "tooltip_content" {
 						datacontext = "[TaxRateSetting.GetEstate]"
-						TooltipTextBlock = {																						
+						TooltipTextBlock = {
 							blockoverride "text"	{
 								text = "ESTATE_CURRENT_TAX_TT"
 							}
 						}
-						
+
 						TooltipStringPairList = {
 							textcontext = "[TaxRateSetting.GetTaxSettingsTooltip]"
 						}
 
 						TooltipTextBlock = {
-							visible = "[TaxRateSetting.IsUsingAutoTaxRate]"																			
+							visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
 							blockoverride "text"	{
 								text = "ESTATE_CURRENT_TAX_AUTOMATED_TT"
 							}
@@ -126,21 +126,21 @@ types SmartTaxes {
 					blockoverride "concept_link" {
 						text = [tax|E]
 					}
-					
+
 					blockoverride "tooltip_content" {
 						datacontext = "[TaxRateSetting.GetEstate]"
-						TooltipTextBlock = {																						
+						TooltipTextBlock = {
 							blockoverride "text"	{
 								text = "ESTATE_CURRENT_TAX_TT"
 							}
 						}
-						
+
 						TooltipStringPairList = {
 							textcontext = "[TaxRateSetting.GetTaxSettingsTooltip]"
 						}
 
 						TooltipTextBlock = {
-							visible = "[TaxRateSetting.IsUsingAutoTaxRate]"																			
+							visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
 							blockoverride "text"	{
 								text = "ESTATE_CURRENT_TAX_AUTOMATED_TT"
 							}
@@ -171,7 +171,7 @@ types SmartTaxes {
 			datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
 			# margin = { 5 0 }
 			# spacing = 3
-		
+
 			using = bg_number_container_bckg
 			blockoverride "number_container_extra" {
 				alpha = 0.4
@@ -181,13 +181,13 @@ types SmartTaxes {
 			button_square_minus = {
 				size = { 18 18 }
 				enabled = yes
-				
+
 				tooltipwidget = { BasicFunctionalTooltip = {} }
 				action_tooltip = {
 					click_type = left
 					click_mode = single
 					click_modifier = default
-					
+
 					enabled = yes
 					title = "-1%"
 					on_action = "[GetScriptedGui('subtract_one_percent').Execute(GuiScope.AddScope('country', Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
@@ -231,7 +231,7 @@ types SmartTaxes {
 				raw_text = "[GuiScope.AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).ScriptValue('current_target_satisfaction')|%0]"
 				align = center
 			}
-			
+
 			# tooltipwidget = {
 			# 	SimpleContextualTooltipType = {
 			# 		blockoverride "title_icon" {
@@ -240,7 +240,7 @@ types SmartTaxes {
 			# 				texture = "[GetConceptTexture('goods')]"
 			# 			}
 			# 		}
-					
+
 			# 		lowpriotextcontext = "MOVING_GOODS_AMOUNT_SIMPLE"
 			# 	}
 			# }
@@ -266,7 +266,7 @@ types SmartTaxes {
 					click_modifier = alt
 
 					enabled = yes
-					title = "+10%"									
+					title = "+10%"
 					on_action = "[GetScriptedGui('add_ten_percent').Execute(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
 				}
 
@@ -276,7 +276,7 @@ types SmartTaxes {
 					click_modifier = shift
 
 					enabled = yes
-					title = "Set to 100%"					
+					title = "Set to 100%"
 					on_action = "[GetScriptedGui('set_to_one_hundred_percent').Execute(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
 				}
 
@@ -286,7 +286,7 @@ types SmartTaxes {
 					click_modifier = ctrl
 
 					enabled = yes
-					title = "+5%"					
+					title = "+5%"
 					on_action = "[GetScriptedGui('add_five_percent').Execute(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', Estate.GetType.MakeScope).End)]"
 				}
 			}

@@ -1,4 +1,4 @@
-types SmartTaxes {
+﻿types SmartTaxes {
 	type smart_taxes_topbar = widget {
 		state = {
 			name = smart_taxes_hide

@@ -1,4 +1,4 @@
-
+﻿
 types EconomyLateralviewTypes
 {
 	type budget_card = widget {
