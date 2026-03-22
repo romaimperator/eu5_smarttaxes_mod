@@ -32,7 +32,7 @@
 	max = scope:max_tax
 }
 
-current_target_satisfaction = {
+smart_taxes_current_target_satisfaction = {
 	scope:country = {
 		if = { limit = { scope:estate_type = estate_type:nobles_estate }
 			value = var:nobles_estate_target

@@ -210,7 +210,7 @@ types SmartTaxes {
 				size = {35 20}
 				autoresize = no
 				using = Font_Size_Small
-				raw_text = "[GuiScope.AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).ScriptValue('current_target_satisfaction')|%0]"
+				raw_text = "[GuiScope.AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).ScriptValue('smart_taxes_current_target_satisfaction')|%0]"
 				align = center
 			}
 
