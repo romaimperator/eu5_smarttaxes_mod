@@ -11,11 +11,61 @@ smart_taxes_monthly_tick = {
 
 	on_actions = {
 		smart_taxes_daily_tick
+		delay = { days = 1 }
+		smart_taxes_daily_tick
+		delay = { days = 2 }
+		smart_taxes_daily_tick
+		delay = { days = 3 }
+		smart_taxes_daily_tick
+		delay = { days = 4 }
+		smart_taxes_daily_tick
+		delay = { days = 5 }
+		smart_taxes_daily_tick
+		delay = { days = 6 }
+		smart_taxes_daily_tick
 		delay = { days = 7 }
+		smart_taxes_daily_tick
+		delay = { days = 8 }
+		smart_taxes_daily_tick
+		delay = { days = 9 }
+		smart_taxes_daily_tick
+		delay = { days = 10 }
+		smart_taxes_daily_tick
+		delay = { days = 11 }
+		smart_taxes_daily_tick
+		delay = { days = 12 }
+		smart_taxes_daily_tick
+		delay = { days = 13 }
 		smart_taxes_daily_tick
 		delay = { days = 14 }
 		smart_taxes_daily_tick
+		delay = { days = 15 }
+		smart_taxes_daily_tick
+		delay = { days = 16 }
+		smart_taxes_daily_tick
+		delay = { days = 17 }
+		smart_taxes_daily_tick
+		delay = { days = 18 }
+		smart_taxes_daily_tick
+		delay = { days = 19 }
+		smart_taxes_daily_tick
+		delay = { days = 20 }
+		smart_taxes_daily_tick
 		delay = { days = 21 }
+		smart_taxes_daily_tick
+		delay = { days = 22 }
+		smart_taxes_daily_tick
+		delay = { days = 23 }
+		smart_taxes_daily_tick
+		delay = { days = 24 }
+		smart_taxes_daily_tick
+		delay = { days = 25 }
+		smart_taxes_daily_tick
+		delay = { days = 26 }
+		smart_taxes_daily_tick
+		delay = { days = 27 }
+		smart_taxes_daily_tick
+		delay = { days = 28 }
 		smart_taxes_daily_tick
 	}
 	effect = {

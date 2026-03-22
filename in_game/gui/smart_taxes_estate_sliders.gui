@@ -1,23 +1,5 @@
 ﻿template smart_taxes_economy_lateralview {
 	smart_taxes_estate_tax_slider = {}
-	overlappingitembox = {
-		visible = yes
-		state = {
-			name = taxing_initial_init
-			trigger_on_create = yes
-			next = taxing_init
-			on_finish = "[PdxGuiWidget.TriggerAnimation('taxing_init')]"
-		}
-
-		state = {
-			name = taxing_init
-			duration = 1
-			on_start = "[PdxGuiWidget.Hide]"
-			on_finish = "[PdxGuiWidget.Show]"
-			on_finish = "[GetScriptedGui('taxing_setup').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-			next = taxing_init
-		}
-	}
 	smart_taxes_satisfaction_target = {
 		visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
 	}
@@ -27,13 +9,15 @@ types SmartTaxes {
 	type smart_taxes_estate_tax_slider = widget {
 		using = layoutpolicy_expanding
 		economy_slider = {
-			visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+			datacontext = "[TaxRateSetting.GetEstate.GetType]"
+			datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
+			visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).End)]"
 			parentanchor = left|vcenter
 			size = { 60 10 }
 			min = 0
 			max = 1
-			mincap = "[GuiScope.AddScope('current_tax_rate', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetEconomy.GetTaxRate(TaxRateSetting.GetEstate.GetType))).AddScope('satisfaction_equilibrium', MakeScopeValue(TaxRateSetting.GetImpactValue)).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('global_recovery', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetModifier('global_estate_satisfaction_recovery'))).AddScope('current_satisfaction', MakeScopeValue(TaxRateSetting.GetEstate.GetSatisfaction)).AddScope('max_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMaxTaxValue)).AddScope('min_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMinTaxValue)).ScriptValue('smart_taxes_compute_tax_rate')]"
-			maxcap = "[GuiScope.AddScope('current_tax_rate', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetEconomy.GetTaxRate(TaxRateSetting.GetEstate.GetType))).AddScope('satisfaction_equilibrium', MakeScopeValue(TaxRateSetting.GetImpactValue)).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('global_recovery', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetModifier('global_estate_satisfaction_recovery'))).AddScope('current_satisfaction', MakeScopeValue(TaxRateSetting.GetEstate.GetSatisfaction)).AddScope('max_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMaxTaxValue)).AddScope('min_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMinTaxValue)).ScriptValue('smart_taxes_compute_tax_rate')]"
+			mincap = "[GuiScope.AddScope('country', Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).ScriptValue('smart_taxes_compute_tax_rate')]"
+			maxcap = "[GuiScope.AddScope('country', Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).ScriptValue('smart_taxes_compute_tax_rate')]"
 
 			tooltipwidget = {
 				ContextualTooltipType = {
@@ -228,22 +212,9 @@ types SmartTaxes {
 				size = {35 20}
 				autoresize = no
 				using = Font_Size_Small
-				raw_text = "[GuiScope.AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).ScriptValue('current_target_satisfaction')|%0]"
+				raw_text = "[GuiScope.AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).ScriptValue('smart_taxes_current_target_satisfaction')|%0]"
 				align = center
 			}
-
-			# tooltipwidget = {
-			# 	SimpleContextualTooltipType = {
-			# 		blockoverride "title_icon" {
-			# 			icon = {
-			# 				using = tooltip_title_icon_size
-			# 				texture = "[GetConceptTexture('goods')]"
-			# 			}
-			# 		}
-
-			# 		lowpriotextcontext = "MOVING_GOODS_AMOUNT_SIMPLE"
-			# 	}
-			# }
 
 			button_square_plus = {
 				size = { 18 18 }
