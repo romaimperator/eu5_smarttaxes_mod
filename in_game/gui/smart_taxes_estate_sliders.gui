@@ -1,23 +1,5 @@
 ﻿template smart_taxes_economy_lateralview {
 	smart_taxes_estate_tax_slider = {}
-	overlappingitembox = {
-		visible = yes
-		state = {
-			name = taxing_initial_init
-			trigger_on_create = yes
-			next = taxing_init
-			on_finish = "[PdxGuiWidget.TriggerAnimation('taxing_init')]"
-		}
-
-		state = {
-			name = taxing_init
-			duration = 1
-			on_start = "[PdxGuiWidget.Hide]"
-			on_finish = "[PdxGuiWidget.Show]"
-			on_finish = "[GetScriptedGui('taxing_setup').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-			next = taxing_init
-		}
-	}
 	smart_taxes_satisfaction_target = {
 		visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
 	}
