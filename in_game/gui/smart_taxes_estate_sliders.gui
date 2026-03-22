@@ -232,19 +232,6 @@ types SmartTaxes {
 				align = center
 			}
 
-			# tooltipwidget = {
-			# 	SimpleContextualTooltipType = {
-			# 		blockoverride "title_icon" {
-			# 			icon = {
-			# 				using = tooltip_title_icon_size
-			# 				texture = "[GetConceptTexture('goods')]"
-			# 			}
-			# 		}
-
-			# 		lowpriotextcontext = "MOVING_GOODS_AMOUNT_SIMPLE"
-			# 	}
-			# }
-
 			button_square_plus = {
 				size = { 18 18 }
 				enabled = yes
