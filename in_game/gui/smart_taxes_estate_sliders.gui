@@ -9,13 +9,15 @@ types SmartTaxes {
 	type smart_taxes_estate_tax_slider = widget {
 		using = layoutpolicy_expanding
 		economy_slider = {
-			visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+			datacontext = "[TaxRateSetting.GetEstate.GetType]"
+			datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
+			visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).End)]"
 			parentanchor = left|vcenter
 			size = { 60 10 }
 			min = 0
 			max = 1
-			mincap = "[GuiScope.AddScope('current_tax_rate', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetEconomy.GetTaxRate(TaxRateSetting.GetEstate.GetType))).AddScope('satisfaction_equilibrium', MakeScopeValue(TaxRateSetting.GetImpactValue)).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('global_recovery', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetModifier('global_estate_satisfaction_recovery'))).AddScope('current_satisfaction', MakeScopeValue(TaxRateSetting.GetEstate.GetSatisfaction)).AddScope('max_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMaxTaxValue)).AddScope('min_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMinTaxValue)).ScriptValue('smart_taxes_compute_tax_rate')]"
-			maxcap = "[GuiScope.AddScope('current_tax_rate', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetEconomy.GetTaxRate(TaxRateSetting.GetEstate.GetType))).AddScope('satisfaction_equilibrium', MakeScopeValue(TaxRateSetting.GetImpactValue)).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('global_recovery', MakeScopeValue(TaxRateSetting.GetEstate.GetCountry.GetModifier('global_estate_satisfaction_recovery'))).AddScope('current_satisfaction', MakeScopeValue(TaxRateSetting.GetEstate.GetSatisfaction)).AddScope('max_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMaxTaxValue)).AddScope('min_tax', MakeScopeValue(TaxRateSetting.GetEstate.GetMinTaxValue)).ScriptValue('smart_taxes_compute_tax_rate')]"
+			mincap = "[GuiScope.AddScope('country', Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).ScriptValue('smart_taxes_compute_tax_rate')]"
+			maxcap = "[GuiScope.AddScope('country', Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).ScriptValue('smart_taxes_compute_tax_rate')]"
 
 			tooltipwidget = {
 				ContextualTooltipType = {
