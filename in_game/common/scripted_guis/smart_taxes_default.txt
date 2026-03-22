@@ -1,4 +1,4 @@
-﻿taxing_setup = {
+﻿smart_taxes_setup_defaults = {
 	effect = {
 		debug_log = "Smart Taxes: Setup Defaults"
 		scope:country = {
