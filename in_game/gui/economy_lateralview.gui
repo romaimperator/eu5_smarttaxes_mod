@@ -1970,6 +1970,9 @@ lateralview = {
 												}
 											}
 
+											# Smart Taxes Research Spending Mechanic Compatibility
+											smart_taxes_research_spending_mechanic_type = {}
+
 											#unused maintenence settings
 											vbox = {
 												layoutpolicy_horizontal = expanding
