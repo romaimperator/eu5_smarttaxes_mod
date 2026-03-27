@@ -1,6 +1,6 @@
 ﻿smart_taxes_setup_defaults = {
 	effect = {
-		debug_log = "Smart Taxes: Setup Defaults"
+		# debug_log = "Smart Taxes: Setup Defaults"
 		scope:country = {
 			if = { limit = { not = { exists = var:nobles_estate_target } }
 				set_variable = { name = nobles_estate_target value = 0.5 }
