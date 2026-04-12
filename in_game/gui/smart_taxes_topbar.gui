@@ -8,7 +8,7 @@
 		}
 		state = {
 			name = smart_taxes_show
-			duration = 0.1
+			duration = 2
 			on_finish = "[GetScriptedGui('smart_taxes_topbar_hide').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 			next = smart_taxes_hide
 		}
