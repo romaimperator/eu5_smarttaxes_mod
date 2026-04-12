@@ -1,20 +1,17 @@
 ﻿types SmartTaxes {
-	# Auto-disables vanilla tax automation for estates where smart taxes is enabled.
-	# Vanilla auto-tax is incompatible with smart taxes (both try to set the rate).
 	type smart_taxes_auto_tax_disabler = widget {
 		size = { 0 0 }
+		visible = "[GetPlayer.Exists]"
 		datacontext = "[GetEconomyView]"
 		datamodel = "[EconomyView.GetTaxRateSettings]"
 		item = {
 			widget = {
 				size = { 0 0 }
-				visible = "[And(TaxRateSetting.IsUsingAutoTaxRate, GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End))]"
+				visible_at_creation = no
+				visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
 				state = {
-					name = _disable_auto_tax
-					trigger_on_create = yes
-					duration = 2
-					on_finish = "[TaxRateSetting.ToggleAutoTaxRate]"
-					next = _disable_auto_tax
+					name = _show
+					on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
 				}
 			}
 		}
