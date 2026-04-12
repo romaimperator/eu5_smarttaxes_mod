@@ -1,7 +1,6 @@
 ﻿types SmartTaxes {
 	type smart_taxes_auto_tax_disabler = widget {
 		size = { 0 0 }
-		visible = "[GetPlayer.Exists]"
 		datacontext = "[GetEconomyView]"
 		datamodel = "[EconomyView.GetTaxRateSettings]"
 		item = {
@@ -30,7 +29,6 @@
 			on_finish = "[GetScriptedGui('smart_taxes_topbar_hide').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 			next = smart_taxes_hide
 		}
-		visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_show_topbar_to_recompute').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 		datacontext = "[GetEconomyView]"
 		datamodel = "[EconomyView.GetTaxRateSettings]"
 		item = {
