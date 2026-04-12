@@ -139,27 +139,27 @@ smart_taxes_sync_all = {
 	cmm_sync_bool_alias_inverted = { setting = smart_taxes__cossacks_enabled alias = cossacks_estate_disabled }
 	cmm_sync_bool_alias_inverted = { setting = smart_taxes__dhimmi_enabled alias = dhimmi_estate_disabled }
 
-	# Target sliders → divide by 100 to convert 0–100 integer to 0.0–1.0 float
-	set_variable = { name = nobles_estate_target value = "variable_map(cmm|flag:smart_taxes__nobles_target)" }
-	change_variable = { name = nobles_estate_target divide = 100 }
+	# Target sliders → copy raw 0–100 value via alias, then scale to 0.0–1.0
+	cmm_sync_setting_alias = { setting = smart_taxes__nobles_target alias = nobles_estate_target }
+	set_variable = { name = nobles_estate_target value = { value = var:nobles_estate_target multiply = 0.01 } }
 
-	set_variable = { name = clergy_estate_target value = "variable_map(cmm|flag:smart_taxes__clergy_target)" }
-	change_variable = { name = clergy_estate_target divide = 100 }
+	cmm_sync_setting_alias = { setting = smart_taxes__clergy_target alias = clergy_estate_target }
+	set_variable = { name = clergy_estate_target value = { value = var:clergy_estate_target multiply = 0.01 } }
 
-	set_variable = { name = burghers_estate_target value = "variable_map(cmm|flag:smart_taxes__burghers_target)" }
-	change_variable = { name = burghers_estate_target divide = 100 }
+	cmm_sync_setting_alias = { setting = smart_taxes__burghers_target alias = burghers_estate_target }
+	set_variable = { name = burghers_estate_target value = { value = var:burghers_estate_target multiply = 0.01 } }
 
-	set_variable = { name = peasants_estate_target value = "variable_map(cmm|flag:smart_taxes__peasants_target)" }
-	change_variable = { name = peasants_estate_target divide = 100 }
+	cmm_sync_setting_alias = { setting = smart_taxes__peasants_target alias = peasants_estate_target }
+	set_variable = { name = peasants_estate_target value = { value = var:peasants_estate_target multiply = 0.01 } }
 
-	set_variable = { name = tribes_estate_target value = "variable_map(cmm|flag:smart_taxes__tribes_target)" }
-	change_variable = { name = tribes_estate_target divide = 100 }
+	cmm_sync_setting_alias = { setting = smart_taxes__tribes_target alias = tribes_estate_target }
+	set_variable = { name = tribes_estate_target value = { value = var:tribes_estate_target multiply = 0.01 } }
 
-	set_variable = { name = cossacks_estate_target value = "variable_map(cmm|flag:smart_taxes__cossacks_target)" }
-	change_variable = { name = cossacks_estate_target divide = 100 }
+	cmm_sync_setting_alias = { setting = smart_taxes__cossacks_target alias = cossacks_estate_target }
+	set_variable = { name = cossacks_estate_target value = { value = var:cossacks_estate_target multiply = 0.01 } }
 
-	set_variable = { name = dhimmi_estate_target value = "variable_map(cmm|flag:smart_taxes__dhimmi_target)" }
-	change_variable = { name = dhimmi_estate_target divide = 100 }
+	cmm_sync_setting_alias = { setting = smart_taxes__dhimmi_target alias = dhimmi_estate_target }
+	set_variable = { name = dhimmi_estate_target value = { value = var:dhimmi_estate_target multiply = 0.01 } }
 
 	set_variable = { name = smart_taxes_recalculate value = yes }
 }
@@ -194,32 +194,32 @@ smart_taxes_handle_callback = {
 		}
 		# Target sliders
 		flag:smart_taxes__nobles_target = {
-			set_variable = { name = nobles_estate_target value = "variable_map(cmm|flag:smart_taxes__nobles_target)" }
-			change_variable = { name = nobles_estate_target divide = 100 }
+			cmm_sync_setting_alias = { setting = smart_taxes__nobles_target alias = nobles_estate_target }
+			set_variable = { name = nobles_estate_target value = { value = var:nobles_estate_target multiply = 0.01 } }
 		}
 		flag:smart_taxes__clergy_target = {
-			set_variable = { name = clergy_estate_target value = "variable_map(cmm|flag:smart_taxes__clergy_target)" }
-			change_variable = { name = clergy_estate_target divide = 100 }
+			cmm_sync_setting_alias = { setting = smart_taxes__clergy_target alias = clergy_estate_target }
+			set_variable = { name = clergy_estate_target value = { value = var:clergy_estate_target multiply = 0.01 } }
 		}
 		flag:smart_taxes__burghers_target = {
-			set_variable = { name = burghers_estate_target value = "variable_map(cmm|flag:smart_taxes__burghers_target)" }
-			change_variable = { name = burghers_estate_target divide = 100 }
+			cmm_sync_setting_alias = { setting = smart_taxes__burghers_target alias = burghers_estate_target }
+			set_variable = { name = burghers_estate_target value = { value = var:burghers_estate_target multiply = 0.01 } }
 		}
 		flag:smart_taxes__peasants_target = {
-			set_variable = { name = peasants_estate_target value = "variable_map(cmm|flag:smart_taxes__peasants_target)" }
-			change_variable = { name = peasants_estate_target divide = 100 }
+			cmm_sync_setting_alias = { setting = smart_taxes__peasants_target alias = peasants_estate_target }
+			set_variable = { name = peasants_estate_target value = { value = var:peasants_estate_target multiply = 0.01 } }
 		}
 		flag:smart_taxes__tribes_target = {
-			set_variable = { name = tribes_estate_target value = "variable_map(cmm|flag:smart_taxes__tribes_target)" }
-			change_variable = { name = tribes_estate_target divide = 100 }
+			cmm_sync_setting_alias = { setting = smart_taxes__tribes_target alias = tribes_estate_target }
+			set_variable = { name = tribes_estate_target value = { value = var:tribes_estate_target multiply = 0.01 } }
 		}
 		flag:smart_taxes__cossacks_target = {
-			set_variable = { name = cossacks_estate_target value = "variable_map(cmm|flag:smart_taxes__cossacks_target)" }
-			change_variable = { name = cossacks_estate_target divide = 100 }
+			cmm_sync_setting_alias = { setting = smart_taxes__cossacks_target alias = cossacks_estate_target }
+			set_variable = { name = cossacks_estate_target value = { value = var:cossacks_estate_target multiply = 0.01 } }
 		}
 		flag:smart_taxes__dhimmi_target = {
-			set_variable = { name = dhimmi_estate_target value = "variable_map(cmm|flag:smart_taxes__dhimmi_target)" }
-			change_variable = { name = dhimmi_estate_target divide = 100 }
+			cmm_sync_setting_alias = { setting = smart_taxes__dhimmi_target alias = dhimmi_estate_target }
+			set_variable = { name = dhimmi_estate_target value = { value = var:dhimmi_estate_target multiply = 0.01 } }
 		}
 	}
 	set_variable = { name = smart_taxes_recalculate value = yes }
