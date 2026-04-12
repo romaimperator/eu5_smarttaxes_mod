@@ -22,14 +22,8 @@ smart_taxes__estates_on_changed = {
 
 smart_taxes_enabled = {
 	is_shown = {
-		OR = {
-			AND = { scope:estate_type = estate_type:nobles_estate not = { exists = root.var:nobles_estate_disabled } }
-			AND = { scope:estate_type = estate_type:clergy_estate not = { exists = root.var:clergy_estate_disabled } }
-			AND = { scope:estate_type = estate_type:burghers_estate not = { exists = root.var:burghers_estate_disabled } }
-			AND = { scope:estate_type = estate_type:peasants_estate not = { exists = root.var:peasants_estate_disabled } }
-			AND = { scope:estate_type = estate_type:tribes_estate not = { exists = root.var:tribes_estate_disabled } }
-			AND = { scope:estate_type = estate_type:cossacks_estate not = { exists = root.var:cossacks_estate_disabled } }
-			AND = { scope:estate_type = estate_type:dhimmi_estate not = { exists = root.var:dhimmi_estate_disabled } }
+		root = {
+			is_target_in_variable_list = { name = smart_taxes_enabled_estates target = scope:estate_type }
 		}
 	}
 }

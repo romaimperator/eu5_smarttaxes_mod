@@ -1,0 +1,25 @@
+﻿# Hook this mod into CMF shared registration on_action.
+cmf_on_mod_registration = {
+	on_actions = {
+		smart_taxes_on_register_mod
+	}
+}
+
+smart_taxes_on_register_mod = {
+	effect = {
+		smart_taxes_register_mod = yes
+	}
+}
+
+# Unified callback hook -- handles setting changes.
+cmf_on_callback = {
+	on_actions = {
+		smart_taxes_on_callback
+	}
+}
+
+smart_taxes_on_callback = {
+	effect = {
+		smart_taxes_sync_all = yes
+	}
+}
