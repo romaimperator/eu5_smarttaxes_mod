@@ -26,6 +26,7 @@
 			text_single = {
 				raw_text = "HI"
 			}
+			smart_taxes_auto_tax_disabler = {}
 			smart_taxes_topbar = {}
 		}
 	}
