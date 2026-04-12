@@ -62,24 +62,3 @@ _smart_taxes_show_hide_estate = {
 	}
 	if = { limit = { always = no } cmf_suppress = { v = $setting$_$i$ } }
 }
-
-# Build game-facing data structures from CMM list fields.
-# - smart_taxes_enabled_estates: variable list of estate_type scopes where enabled = true
-# - smart_taxes_targets: variable map of estate_type -> target satisfaction (0.0-1.0)
-# Scope: country
-smart_taxes_sync_all = {
-	cmm_build_list_bool_list = {
-		setting = smart_taxes__estates
-		field_slot = 1
-		list_name = smart_taxes_enabled_estates
-	}
-
-	cmm_build_list_field_map = {
-		setting = smart_taxes__estates
-		field_slot = 2
-		map_name = smart_taxes_targets
-		multiply = 0.01
-	}
-
-	set_variable = { name = smart_taxes_recalculate value = yes }
-}
