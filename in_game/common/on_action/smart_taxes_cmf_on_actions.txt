@@ -24,7 +24,8 @@ smart_taxes_on_callback = {
 	}
 }
 
-# Monthly recalculation via CMF shared pulse (already filtered to human players).
+# Recalculation via CMF shared pulse (already filtered to human players).
+# Delays 28 days so taxes update right before the next month tick.
 cmf_monthly_human_country_pulse = {
 	on_actions = {
 		smart_taxes_on_monthly
@@ -32,6 +33,13 @@ cmf_monthly_human_country_pulse = {
 }
 
 smart_taxes_on_monthly = {
+	on_actions = {
+		delay = { days = 28 }
+		smart_taxes_set_recalculate
+	}
+}
+
+smart_taxes_set_recalculate = {
 	effect = {
 		set_variable = { name = smart_taxes_recalculate value = yes }
 	}
