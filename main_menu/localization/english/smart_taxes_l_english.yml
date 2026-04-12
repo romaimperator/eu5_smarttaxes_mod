@@ -24,4 +24,8 @@
 
  # Fields
  smart_taxes__estates__enabled_name: "Enabled"
- smart_taxes__estates__target_name: "Target %"
+ smart_taxes__estates__target_name: "Target Satisfaction"
+ smart_taxes__estates__target_prefix_high: "#G "
+ smart_taxes__estates__target_postfix_high: "%#!"
+ smart_taxes__estates__target_prefix_low: "#R "
+ smart_taxes__estates__target_postfix_low: "%#!"

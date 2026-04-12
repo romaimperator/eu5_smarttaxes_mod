@@ -18,7 +18,7 @@
 					name = smart_taxes_init
 					trigger_on_create = yes
 					duration = 2
-					on_finish = "[GetScriptedGui('smart_taxes_setup_defaults').Execute(GuiScope.AddScope('country', GetPlayer.MakeScope).End)]"
+					on_finish = "[GetScriptedGui('smart_taxes_setup_defaults').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 					on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_init')]"
 				}
 			}

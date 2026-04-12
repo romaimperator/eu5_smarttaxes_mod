@@ -27,6 +27,8 @@ smart_taxes_register_mod = {
 		step_value = 1
 	}
 
+	cmm_set_list_field_conditional_format = { mod_id = smart_taxes setting_id = estates field_id = target }
+
 	# Hide estates the player doesn't have, show ones they do
 	if = { limit = { country_has_estate = estate_type:nobles_estate }
 		cmm_show_list_item = { mod_id = smart_taxes setting_id = estates item = 1 }
