@@ -1,19 +1,73 @@
-﻿basic_dialog = {
+﻿types SmartTaxes {
+	type smart_taxes_auto_tax_disabler = widget {
+		size = { 0 0 }
+		datacontext = "[GetEconomyView]"
+		datamodel = "[EconomyView.GetTaxRateSettings]"
+		item = {
+			widget = {
+				size = { 0 0 }
+				visible_at_creation = no
+				visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
+				state = {
+					name = _show
+					on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
+				}
+			}
+		}
+	}
+
+	type smart_taxes_estate_slider = widget {
+		datacontext = "[TaxRateSetting.GetEstate.GetType]"
+		datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
+		visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).End)]"
+		economy_slider = {
+			size = { 60 10 }
+			min = 0
+			max = 1
+			mincap = "[GuiScope.AddScope('country', Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).ScriptValue('smart_taxes_compute_tax_rate')]"
+			maxcap = "[GuiScope.AddScope('country', Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).ScriptValue('smart_taxes_compute_tax_rate')]"
+			value = "[TaxRateSetting.GetDefault]"
+			onvaluechanged = "[TaxRateSetting.OnTaxChanged]"
+			onchangefinish = "[TaxRateSetting.Post]"
+		}
+	}
+
+	type smart_taxes_tax_setter = widget {
+		state = {
+			name = smart_taxes_wait
+			trigger_on_create = yes
+			next = smart_taxes_apply
+			on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_apply')]"
+		}
+		state = {
+			name = smart_taxes_apply
+			duration = 2
+			on_finish = "[GetScriptedGui('smart_taxes_clear_recalculate').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			next = smart_taxes_wait
+		}
+		datacontext = "[GetEconomyView]"
+		datamodel = "[EconomyView.GetTaxRateSettings]"
+		item = {
+			smart_taxes_estate_slider = {}
+		}
+	}
+}
+
+basic_dialog = {
 	name = "smart_taxes_hidden_window"
 	widgetid = smart_taxes_hidden_window
 	layer = top
 	visible = "[EqualTo_CFixedPoint('(CFixedPoint)0', '(CFixedPoint)0')]"
 	parentanchor = center
-
 	position = { -10000 1 }
 	blockoverride "header_text" {
 		raw_text = "Smart Taxes: Hidden Window"
 	}
 	blockoverride "content" {
 		vbox = {
-			visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_show_topbar_to_recompute').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+			visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_should_recalculate').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 			smart_taxes_auto_tax_disabler = {}
-			smart_taxes_topbar = {}
+			smart_taxes_tax_setter = {}
 		}
 	}
 }

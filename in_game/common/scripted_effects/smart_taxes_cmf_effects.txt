@@ -112,9 +112,3 @@ smart_taxes_sync_all = {
 
 	set_variable = { name = smart_taxes_recalculate value = yes }
 }
-
-# Callback handler for cmf_on_callback.
-# Scope: country
-smart_taxes_handle_callback = {
-	smart_taxes_sync_all = yes
-}

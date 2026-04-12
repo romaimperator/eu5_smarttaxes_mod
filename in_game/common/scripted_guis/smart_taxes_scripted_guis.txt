@@ -1,10 +1,10 @@
-﻿smart_taxes_show_topbar_to_recompute = {
+﻿smart_taxes_should_recalculate = {
 	is_shown = {
 		exists = var:smart_taxes_recalculate
 	}
 }
 
-smart_taxes_topbar_hide = {
+smart_taxes_clear_recalculate = {
 	effect = {
 		remove_variable = smart_taxes_recalculate
 	}
