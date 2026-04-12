@@ -46,6 +46,16 @@ smart_taxes_topbar_hide = {
 	}
 }
 
+smart_taxes__estates_on_changed = {
+	scope = country
+	effect = {
+		cmm_apply_list_change = {
+			setting = smart_taxes__estates
+		}
+		smart_taxes_sync_all = yes
+	}
+}
+
 smart_taxes_enabled = {
 	is_shown = {
 		OR = {

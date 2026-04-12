@@ -6,38 +6,22 @@
  # Tab
  smart_taxes__settings_name: "Settings"
 
- # Groups
- smart_taxes__settings__enabled_name: "Enabled Estates"
- smart_taxes__settings__targets_name: "Target Satisfaction"
+ # List setting
+ smart_taxes__settings__estates_name: "Estate Settings"
+ smart_taxes__estates_name: "Estate Settings"
+ smart_taxes__settings__estates_desc: "Configure which estates are automated and their target satisfaction."
+ smart_taxes__estates_desc: "Configure which estates are automated and their target satisfaction."
+ smart_taxes__estates_item_column_name: "Estate"
 
- # Enabled toggles
- smart_taxes__nobles_enabled_name: "Nobles"
- smart_taxes__nobles_enabled_desc: "Enable SmartTaxes automation for the Nobles estate."
- smart_taxes__clergy_enabled_name: "Clergy"
- smart_taxes__clergy_enabled_desc: "Enable SmartTaxes automation for the Clergy estate."
- smart_taxes__burghers_enabled_name: "Burghers"
- smart_taxes__burghers_enabled_desc: "Enable SmartTaxes automation for the Burghers estate."
- smart_taxes__peasants_enabled_name: "Peasants"
- smart_taxes__peasants_enabled_desc: "Enable SmartTaxes automation for the Peasants estate."
- smart_taxes__tribes_enabled_name: "Tribes"
- smart_taxes__tribes_enabled_desc: "Enable SmartTaxes automation for the Tribes estate."
- smart_taxes__cossacks_enabled_name: "Cossacks"
- smart_taxes__cossacks_enabled_desc: "Enable SmartTaxes automation for the Cossacks estate."
- smart_taxes__dhimmi_enabled_name: "Dhimmi"
- smart_taxes__dhimmi_enabled_desc: "Enable SmartTaxes automation for the Dhimmi estate."
+ # Items
+ smart_taxes__estates_i1_name: "Nobles"
+ smart_taxes__estates_i2_name: "Clergy"
+ smart_taxes__estates_i3_name: "Burghers"
+ smart_taxes__estates_i4_name: "Peasants"
+ smart_taxes__estates_i5_name: "Tribes"
+ smart_taxes__estates_i6_name: "Cossacks"
+ smart_taxes__estates_i7_name: "Dhimmi"
 
- # Target satisfaction sliders
- smart_taxes__nobles_target_name: "Nobles Target"
- smart_taxes__nobles_target_desc: "Target satisfaction percentage for the Nobles estate."
- smart_taxes__clergy_target_name: "Clergy Target"
- smart_taxes__clergy_target_desc: "Target satisfaction percentage for the Clergy estate."
- smart_taxes__burghers_target_name: "Burghers Target"
- smart_taxes__burghers_target_desc: "Target satisfaction percentage for the Burghers estate."
- smart_taxes__peasants_target_name: "Peasants Target"
- smart_taxes__peasants_target_desc: "Target satisfaction percentage for the Peasants estate."
- smart_taxes__tribes_target_name: "Tribes Target"
- smart_taxes__tribes_target_desc: "Target satisfaction percentage for the Tribes estate."
- smart_taxes__cossacks_target_name: "Cossacks Target"
- smart_taxes__cossacks_target_desc: "Target satisfaction percentage for the Cossacks estate."
- smart_taxes__dhimmi_target_name: "Dhimmi Target"
- smart_taxes__dhimmi_target_desc: "Target satisfaction percentage for the Dhimmi estate."
+ # Fields
+ smart_taxes__estates__enabled_name: "Enabled"
+ smart_taxes__estates__target_name: "Target %"
