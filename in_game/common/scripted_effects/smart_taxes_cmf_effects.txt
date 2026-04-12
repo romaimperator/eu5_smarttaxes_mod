@@ -1,4 +1,8 @@
-﻿# Root scope: country.
+﻿_smart_taxes_suppress = {
+	cmf_suppress = { v = estate_type }
+}
+
+# Root scope: country.
 smart_taxes_register_mod = {
 	# Items: 1=Nobles, 2=Clergy, 3=Burghers, 4=Peasants, 5=Tribes, 6=Cossacks, 7=Dhimmi
 	# Fields: f1=Enabled (bool), f2=Target (slider)
@@ -14,7 +18,7 @@ smart_taxes_register_mod = {
 		mod_id = smart_taxes
 		setting_id = estates
 		field_id = enabled
-		default_value = 1
+		default_value = 0
 	}
 
 	cmm_register_list_slider_field = {
