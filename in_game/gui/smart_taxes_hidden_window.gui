@@ -1,13 +1,14 @@
 ﻿types SmartTaxes {
 	type smart_taxes_auto_tax_disabler = widget {
 		size = { 0 0 }
-		datacontext = "[GetEconomyView]"
 		datamodel = "[EconomyView.GetTaxRateSettings]"
 		item = {
 			widget = {
+				datacontext = "[TaxRateSetting.GetEstate.GetType]"
+				datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
 				size = { 0 0 }
 				visible_at_creation = no
-				visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
+				visible = "[And(TaxRateSetting.IsUsingAutoTaxRate, GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).End))]"
 				state = {
 					name = _show
 					on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
@@ -45,7 +46,6 @@
 			on_finish = "[GetScriptedGui('smart_taxes_clear_recalculate').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 			next = smart_taxes_wait
 		}
-		datacontext = "[GetEconomyView]"
 		datamodel = "[EconomyView.GetTaxRateSettings]"
 		item = {
 			smart_taxes_estate_slider = {}
