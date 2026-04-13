@@ -1,17 +1,4 @@
-﻿# Callback hook — rebuilds game-facing data structures when CMM settings change.
-cmf_on_callback = {
-	on_actions = {
-		smart_taxes_on_callback
-	}
-}
-
-smart_taxes_on_callback = {
-	effect = {
-		smart_taxes_sync_all = yes
-	}
-}
-
-# Recalculation via CMF shared pulse (already filtered to human players).
+﻿# Recalculation via CMF shared pulse (already filtered to human players).
 # Delays 28 days so taxes update right before the next month tick.
 cmf_monthly_human_country_pulse = {
 	on_actions = {
