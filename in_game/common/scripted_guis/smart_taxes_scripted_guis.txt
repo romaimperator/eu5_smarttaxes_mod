@@ -10,13 +10,12 @@ smart_taxes_clear_recalculate = {
 	}
 }
 
-smart_taxes__estates_on_changed = {
+# Called from the economy panel auto-tax checkbox override.
+# Scope: country. Requires scope:estate_type.
+smart_taxes_toggle = {
 	scope = country
 	effect = {
-		cmm_apply_list_change = {
-			setting = smart_taxes__estates
-		}
-		smart_taxes_sync_all = yes
+		smart_taxes_toggle_estate = yes
 	}
 }
 

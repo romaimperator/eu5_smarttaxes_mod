@@ -1,12 +1,14 @@
-﻿# Recalculation via CMF shared pulse (already filtered to human players).
-# Delays 28 days so taxes update right before the next month tick.
-cmf_monthly_human_country_pulse = {
+﻿# Monthly recalculation. Delays 28 days so taxes update right before the next month tick.
+monthly_country_pulse = {
 	on_actions = {
 		smart_taxes_on_monthly
 	}
 }
 
 smart_taxes_on_monthly = {
+	trigger = {
+		is_ai = no
+	}
 	on_actions = {
 		delay = { days = 28 }
 		smart_taxes_set_recalculate

@@ -1,20 +1,20 @@
-﻿# Build game-facing data structures from CMM list fields.
-# - smart_taxes_enabled_estates: variable list of estate_type scopes where enabled = true
-# - smart_taxes_targets: variable map of estate_type -> target satisfaction (0.0-1.0)
-# Scope: country
-smart_taxes_sync_all = {
-	cmm_build_list_bool_list = {
-		setting = smart_taxes__estates
-		field_slot = 1
-		list_name = smart_taxes_enabled_estates
+﻿# Toggle smart taxes for a single estate. Adds or removes the estate from the enabled list.
+# Scope: country. Requires scope:estate_type.
+smart_taxes_toggle_estate = {
+	if = {
+		limit = {
+			is_target_in_variable_list = { name = smart_taxes_enabled_estates target = scope:estate_type }
+		}
+		remove_list_variable = { name = smart_taxes_enabled_estates target = scope:estate_type }
+	} else = {
+		add_to_variable_list = { name = smart_taxes_enabled_estates target = scope:estate_type }
+		set_variable = { name = smart_taxes_recalculate value = yes }
 	}
+}
 
-	cmm_build_list_field_map = {
-		setting = smart_taxes__estates
-		field_slot = 2
-		map_name = smart_taxes_targets
-		multiply = 0.01
+# Suppress "estate_type is used but never set" warning.
+_smart_taxes_suppress = {
+	if = { limit = { always = no }
+		save_scope_as = estate_type
 	}
-
-	set_variable = { name = smart_taxes_recalculate value = yes }
 }

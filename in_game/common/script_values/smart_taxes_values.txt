@@ -1,7 +1,5 @@
 ﻿smart_taxes_user_target = {
-	scope:country = {
-		value = "variable_map(smart_taxes_targets|scope:estate_type)"
-	}
+	value = 0.5
 }
 
 smart_taxes_compute_tax_rate = {

@@ -5,11 +5,9 @@
 		datamodel = "[EconomyView.GetTaxRateSettings]"
 		item = {
 			widget = {
-				datacontext = "[TaxRateSetting.GetEstate.GetType]"
-				datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
 				size = { 0 0 }
 				visible_at_creation = no
-				visible = "[And(TaxRateSetting.IsUsingAutoTaxRate, GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).End))]"
+				visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
 				state = {
 					name = _show
 					on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
