@@ -1,0 +1,52 @@
+﻿# Root scope: country.
+smart_taxes_register_cmm = {
+	# Items: 1=Nobles, 2=Clergy, 3=Burghers, 4=Peasants, 5=Tribes, 6=Cossacks, 7=Dhimmi
+	cmm_register_settings_list = {
+		mod_id = smart_taxes
+		setting_id = estates
+		tab_id = settings
+		item_count = 7
+		is_ordered = 0
+	}
+
+	# Attach estate_type scopes to list items
+	cmm_set_list_item_value = { mod_id = smart_taxes setting_id = estates item = 1 value = estate_type:nobles_estate }
+	cmm_set_list_item_value = { mod_id = smart_taxes setting_id = estates item = 2 value = estate_type:clergy_estate }
+	cmm_set_list_item_value = { mod_id = smart_taxes setting_id = estates item = 3 value = estate_type:burghers_estate }
+	cmm_set_list_item_value = { mod_id = smart_taxes setting_id = estates item = 4 value = estate_type:peasants_estate }
+	cmm_set_list_item_value = { mod_id = smart_taxes setting_id = estates item = 5 value = estate_type:tribes_estate }
+	cmm_set_list_item_value = { mod_id = smart_taxes setting_id = estates item = 6 value = estate_type:cossacks_estate }
+	cmm_set_list_item_value = { mod_id = smart_taxes setting_id = estates item = 7 value = estate_type:dhimmi_estate }
+
+	cmm_register_list_slider_field = {
+		mod_id = smart_taxes
+		setting_id = estates
+		field_id = target
+		default_value = 50
+		min_value = 0
+		max_value = 100
+		step_value = 1
+	}
+
+	cmm_set_list_field_conditional_format = { mod_id = smart_taxes setting_id = estates field_id = target }
+
+	# Show/hide estates based on availability
+	cmm_for_each_list_item = {
+		setting = smart_taxes__estates
+		effect = _smart_taxes_show_hide_estate
+	}
+
+	# Sync CMM values to game variables on registration (handles save load)
+	smart_taxes_sync_targets = yes
+}
+
+# Per-item callback: show or hide based on country_has_estate.
+_smart_taxes_show_hide_estate = {
+	if = {
+		limit = { country_has_estate = scope:cmm_list_current_item_value }
+		cmm_show_list_item = { mod_id = smart_taxes setting_id = estates item = $i$ }
+	} else = {
+		cmm_hide_list_item = { mod_id = smart_taxes setting_id = estates item = $i$ }
+	}
+	if = { limit = { always = no } cmf_suppress = { v = $setting$_$i$ } }
+}
