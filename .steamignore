@@ -1,4 +1,9 @@
 .git
+.editorconfig
+.gitattributes
+.gitignore
+.ignore
 .steamignore
 steam_description.bbcode
 steam-changenotes/
+screenshots/
