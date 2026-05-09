@@ -69,13 +69,13 @@ smart_taxes_monthly_tick = {
 		smart_taxes_daily_tick
 	}
 	effect = {
-		debug_log = "Smart Taxes: running monthly tick"
+		if = { limit = { debug_only = yes } debug_log = "Smart Taxes: running monthly tick" }
 	}
 }
 
 smart_taxes_daily_tick = {
 	effect = {
-		debug_log = "Smart Taxes: running daily tick"
+		if = { limit = { debug_only = yes } debug_log = "Smart Taxes: running daily tick" }
 		set_variable = { name = smart_taxes_recalculate value = yes }
 	}
 }
