@@ -13,7 +13,9 @@ types SmartTaxes {
 			datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
 			visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).End)]"
 			parentanchor = left|vcenter
-			size = { 60 10 }
+			size = { 120 10 }
+			#set value first or setting the min/max/mincap/maxcap changes the existing value from 0 to something inside the min/max/mincap/maxcap values
+			value = "[TaxRateSetting.GetDefault]"
 			min = 0
 			max = 1
 			mincap = "[GuiScope.AddScope('country', Country.MakeScope).AddScope('estate_type', EstateType.MakeScope).ScriptValue('smart_taxes_compute_tax_rate')]"
@@ -65,7 +67,6 @@ types SmartTaxes {
 				}
 			}
 
-			value = "[TaxRateSetting.GetDefault]"
 			onvaluechanged = "[TaxRateSetting.OnTaxChanged]"
 			onchangefinish = "[TaxRateSetting.Post]"
 
@@ -82,6 +83,8 @@ types SmartTaxes {
 			visible = "[Not(GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End))]"
 			parentanchor = left|vcenter
 			size = { 120 10 }
+			#set value first or setting the min/max/mincap/maxcap changes the existing value from 0 to something inside the min/max/mincap/maxcap values
+			value = "[TaxRateSetting.GetDefault]"
 			min = 0
 			max = 1
 			mincap = "[TaxRateSetting.GetMin]"
@@ -133,7 +136,6 @@ types SmartTaxes {
 				}
 			}
 
-			value = "[TaxRateSetting.GetDefault]"
 			onvaluechanged = "[TaxRateSetting.OnTaxChanged]"
 			onchangefinish = "[TaxRateSetting.Post]"
 
