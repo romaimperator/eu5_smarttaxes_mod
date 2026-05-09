@@ -7,4 +7,36 @@
 		onclick = "[GetScriptedGui('smart_taxes_enabled').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', EstateType.MakeScope).End)]"
 		tooltipwidget = { LeftClickButtonTooltip = { blockoverride "onclick_text" { text = "Toggle SmartTaxes for [Estate.GetName]" } } }
 	}
+
+	type smart_taxes_replacement_enable_checkbox = button_checkbox_auto = {
+		datacontext = "[TaxRateSetting.GetEstate]"
+		datacontext = "[TaxRateSetting.GetEstate.GetType]"
+		size = { 22 22 }
+		visible = "[Not(TaxRateSetting.IsUsingAutoTaxRate)]"
+		# visible = no
+		enabled = "[Not(IsPlayerAIEnabled('finances'))]"
+		checked = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', EstateType.MakeScope).End)]"
+		onclick = "[GetScriptedGui('smart_taxes_enabled').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', EstateType.MakeScope).End)]"
+
+		# widget = {
+		# 	size = { 100% 100% }
+		# 	name = "tax_automation"
+		# 	visible = "[Not(TaxRateSetting.IsUsingAutoTaxRate)]"
+		# }
+
+		tooltipwidget = {
+			LeftClickButtonTooltip = {
+				# blockoverride "tooltip_content" {
+				# 	TooltipTextBlock = {
+				# 		blockoverride "text" {
+				# 			text = ""
+				# 		}
+				# 	}
+				#  }
+				blockoverride "onclick_text" {
+					text = "[SelectLocalization( TaxRateSetting.IsUsingAutoTaxRate, 'DEACTIVATE_AUTO_TAX_RATE', 'ACTIVATE_AUTO_TAX_RATE' )]"
+				}
+			}
+		}
+	}
 }

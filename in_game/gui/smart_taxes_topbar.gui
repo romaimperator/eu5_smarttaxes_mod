@@ -19,4 +19,26 @@
 			smart_taxes_estate_tax_slider = {}
 		}
 	}
+
+	type smart_taxes_swap_to_smart_taxes = widget {
+		datacontext = "[GetEconomyView]"
+		datamodel = "[EconomyView.GetTaxRateSettings]"
+		item = {
+			overlappingitembox = {
+				state = {
+					name = smart_taxes_hide
+					trigger_on_create = yes
+					next = smart_taxes_show
+					on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_show')]"
+				}
+				state = {
+					name = smart_taxes_show
+					duration = 0.1
+					on_finish = "[TaxRateSetting.ToggleAutoTaxRate]"
+					next = smart_taxes_hide
+				}
+				visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
+			}
+		}
+	}
 }

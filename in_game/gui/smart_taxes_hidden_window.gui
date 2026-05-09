@@ -27,6 +27,7 @@
 				raw_text = "HI"
 			}
 			smart_taxes_topbar = {}
+			smart_taxes_swap_to_smart_taxes = {}
 		}
 	}
 }
