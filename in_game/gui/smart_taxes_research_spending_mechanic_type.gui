@@ -1,4 +1,4 @@
-types SmartTaxes {
+﻿types SmartTaxes {
   #TGE
   type smart_taxes_research_spending_mechanic_type = adjustable_budget_card {
     layoutpolicy_horizontal = expanding
