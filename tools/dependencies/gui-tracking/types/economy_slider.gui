@@ -10,11 +10,9 @@
 		step = 0.01
 		wheelstep = 0.01
 
-		track = {
-			using = economy_slider_track
-			
+		block "track_type"{
+			track = { using = economy_slider_track }
 		}
-
 		track_range = { # Available progress
 			using = economy_slider_track_range
 		}

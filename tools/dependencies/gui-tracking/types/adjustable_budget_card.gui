@@ -6,10 +6,14 @@
 		vbox = {
 			widget = {
 				using = layoutpolicy_expanding
-				using = bg_card_header_01
+				block "adjustable_card_header_bg"{
+					using = bg_card_header_01
+				}
 				
 				block "top_widget" {}
-				using = bg_cabinet_card_frame
+				block "budget_card_frame" {
+					using = bg_cabinet_card_frame
+				}
 			}
 
 			widget = {
