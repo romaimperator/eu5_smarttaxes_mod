@@ -1,0 +1,20 @@
+# vanilla: in_game/gui/economy_lateralview.gui
+# mod: in_game/gui/economy_lateralview.gui
+
+	type adjustable_budget_card = widget {
+		using = bg_paper_card
+		vbox = {
+			widget = {
+				using = layoutpolicy_expanding
+				using = bg_card_header_01
+				
+				block "top_widget" {}
+				using = bg_cabinet_card_frame
+			}
+
+			widget = {
+				using = layoutpolicy_expanding
+				block "bottom_widget" {}
+			}
+		}
+	}
