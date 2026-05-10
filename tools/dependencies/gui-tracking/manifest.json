@@ -1,0 +1,47 @@
+{
+  "definitions": {
+    "template:EstateIncomeBreakdownTooltip": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/economy_lateralview.gui",
+      "namespace": null,
+      "tracking_path": "tools/dependencies/gui-tracking/templates/EstateIncomeBreakdownTooltip.gui",
+      "vanilla_file": "in_game/gui/economy_lateralview.gui"
+    },
+    "template:economy_main_tabs": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/economy_lateralview.gui",
+      "namespace": null,
+      "tracking_path": "tools/dependencies/gui-tracking/templates/economy_main_tabs.gui",
+      "vanilla_file": "in_game/gui/economy_lateralview.gui"
+    },
+    "type:adjustable_budget_card": {
+      "base_widget": "widget",
+      "mod_file": "in_game/gui/economy_lateralview.gui",
+      "namespace": "EconomyLateralviewTypes",
+      "tracking_path": "tools/dependencies/gui-tracking/types/adjustable_budget_card.gui",
+      "vanilla_file": "in_game/gui/economy_lateralview.gui"
+    },
+    "type:budget_card": {
+      "base_widget": "widget",
+      "mod_file": "in_game/gui/economy_lateralview.gui",
+      "namespace": "EconomyLateralviewTypes",
+      "tracking_path": "tools/dependencies/gui-tracking/types/budget_card.gui",
+      "vanilla_file": "in_game/gui/economy_lateralview.gui"
+    },
+    "type:economy_slider": {
+      "base_widget": "ranged_slider",
+      "mod_file": "in_game/gui/economy_lateralview.gui",
+      "namespace": "EconomyLateralviewTypes",
+      "tracking_path": "tools/dependencies/gui-tracking/types/economy_slider.gui",
+      "vanilla_file": "in_game/gui/economy_lateralview.gui"
+    },
+    "widget:economy_lateralview": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/economy_lateralview.gui",
+      "namespace": "lateralview",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/economy_lateralview.gui",
+      "vanilla_file": "in_game/gui/economy_lateralview.gui"
+    }
+  },
+  "version": 1
+}

@@ -1,0 +1,52 @@
+﻿# vanilla: in_game/gui/economy_lateralview.gui
+# mod: in_game/gui/economy_lateralview.gui
+
+template economy_main_tabs {
+	button_main_tab_alt = {
+		layoutpolicy_horizontal = expanding
+		tooltipwidget = {
+			using = SubTabBalanceTooltip
+		}
+		widget = {
+			visible = "[Not(IsLateralViewOpened('economy'))]"
+			size = { 100% 100% }
+			name = "tab_balance"
+		}
+		down = "[IsLateralViewOpened('economy')]"
+		datacontext = "[GetAutomatedSystemItem('finances')]"
+		using = automated_tab
+
+		blockoverride "on_action_left" { on_action = "[OpenLateralView('economy')]" }
+		blockoverride "text" { text = "BALANCE_TEXT" }
+	}
+
+	button_main_tab_alt = {
+		name = "tab_markets"
+		using = layoutpolicy_expanding
+		blockoverride "text" { text = "SUBTAB_TRADE_MARKETS" }
+		tooltipwidget = {
+			using = SubTabMarketsTooltip
+		}
+		block "trade_down" { down = "[TradeOverview.Vars.NotExistOrHasValue( 'subtab', 'markets' )]" }
+		
+		datacontext = "[GetAutomatedSystemItem('trade')]"
+		using = automated_tab
+
+		blockoverride "on_action_left" { on_action = "[OpenLateralViewWithParams('trade', 'subtab = markets')]" }
+	}
+
+	button_main_tab_alt = {
+		name = "tab_trading"
+		using = layoutpolicy_expanding
+		blockoverride "text" { text = "TRADE_TAB" }
+		tooltipwidget = {
+			using = SubTabTradingTooltip
+		}
+		block "trade_down" { down = "[TradeOverview.Vars.HasValue( 'subtab', 'trades' )]" }
+		
+		datacontext = "[GetAutomatedSystemItem('trade')]"
+		using = automated_tab
+
+		blockoverride "on_action_left" { on_action = "[OpenLateralViewWithParams('trade', 'subtab = trades')]" }
+	}
+}
