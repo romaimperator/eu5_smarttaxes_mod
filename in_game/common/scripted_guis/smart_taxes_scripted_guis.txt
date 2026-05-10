@@ -19,16 +19,6 @@ smart_taxes_toggle = {
 	}
 }
 
-smart_taxes__estates_on_changed = {
-	scope = country
-	effect = {
-		cmm_apply_list_change = {
-			setting = smart_taxes__estates
-		}
-		smart_taxes_sync_targets = yes
-	}
-}
-
 smart_taxes_enabled = {
 	is_shown = {
 		root = {

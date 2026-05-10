@@ -2,7 +2,7 @@
 	"name":	"SmartTaxes - Local",
 	"id":	"romaimperator.smart_taxes",
 	"version":	"1.2.2",
-	"supported_game_version":	"1.1.*",
+	"supported_game_version":	"1.2.*",
 	"short_description":	"Intelligent automation of your estates taxes. Replaces the vanilla auto-tax with a smarter algorithm that taxes as high as possible while allowing satisfaction to recover at max recovery toward 50%.\n\nOverrides gui/economy_lateralview.gui.",
 	"tags":	["Government and Estates", "User Interface", "Utilities"],
 	"relationships":	[],

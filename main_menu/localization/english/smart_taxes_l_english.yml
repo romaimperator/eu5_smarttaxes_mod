@@ -1,27 +1,3 @@
 ﻿l_english:
  smart_taxes_name: "SmartTaxes"
  smart_taxes_desc: "Intelligent automation of estate tax rates. Sets taxes as high as possible while allowing satisfaction to recover toward a configurable target."
-
- # CMM Settings
- ## Tab
- smart_taxes__settings_name: "Settings"
- ## List setting
- smart_taxes__settings__estates_name: "Estate Settings"
- smart_taxes__estates_name: "Estate Settings"
- smart_taxes__settings__estates_desc: "Configure the target satisfaction for each estate."
- smart_taxes__estates_desc: "Configure the target satisfaction for each estate."
- smart_taxes__estates_item_column_name: "Estate"
- ## Items
- smart_taxes__estates_i1_name: "Nobles"
- smart_taxes__estates_i2_name: "Clergy"
- smart_taxes__estates_i3_name: "Burghers"
- smart_taxes__estates_i4_name: "Peasants"
- smart_taxes__estates_i5_name: "Tribes"
- smart_taxes__estates_i6_name: "Cossacks"
- smart_taxes__estates_i7_name: "Dhimmi"
- ## Fields
- smart_taxes__estates__target_name: "Target Satisfaction"
- smart_taxes__estates__target_prefix_high: "#G "
- smart_taxes__estates__target_postfix_high: "%#!"
- smart_taxes__estates__target_prefix_low: "#R "
- smart_taxes__estates__target_postfix_low: "%#!"

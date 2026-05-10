@@ -1,10 +1,4 @@
-﻿smart_taxes_user_target = {
-	scope:country = {
-		value = "variable_map(smart_taxes_targets|scope:estate_type)"
-	}
-}
-
-smart_taxes_compute_tax_rate = {
+﻿smart_taxes_compute_tax_rate = {
 	value = smart_taxes_estate_target_satisfaction
 	add = smart_taxes_estate_tax_percentage
 	subtract = {
@@ -25,7 +19,7 @@ smart_taxes_compute_tax_rate = {
 		} else_if = { limit = { scope:estate_type = estate_type:dhimmi_estate }
 			add = scope:country.modifier:dhimmi_estate_satisfaction_recovery
 		}
-		max = smart_taxes_user_target
+		max = current_target_satisfaction
 	}
 	min = smart_taxes_estate_min_tax
 	max = smart_taxes_estate_max_tax

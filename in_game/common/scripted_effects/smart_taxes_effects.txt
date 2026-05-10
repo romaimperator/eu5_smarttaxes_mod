@@ -18,16 +18,3 @@ _smart_taxes_suppress = {
 		save_scope_as = estate_type
 	}
 }
-
-# Build smart_taxes_targets variable map from CMM list slider values.
-# Scope: country
-smart_taxes_sync_targets = {
-	cmm_build_list_field_map = {
-		setting = smart_taxes__estates
-		field_slot = 1
-		map_name = smart_taxes_targets
-		multiply = 0.01
-	}
-
-	set_variable = { name = smart_taxes_recalculate value = yes }
-}
