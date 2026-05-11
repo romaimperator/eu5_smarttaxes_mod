@@ -1,0 +1,3 @@
+smart_taxes_recompute_tax_rates = {
+	set_variable = { name = smart_taxes_recalculate value = yes }
+}

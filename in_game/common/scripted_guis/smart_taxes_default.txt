@@ -5,31 +5,31 @@
 			scope:country = {
 				if = { limit = { not = { exists = var:nobles_estate_target } }
 					set_variable = { name = nobles_estate_target value = 0.5 }
-					set_variable = { name = smart_taxes_recalculate value = yes }
+					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:clergy_estate_target } }
 					set_variable = { name = clergy_estate_target value = 0.5 }
-					set_variable = { name = smart_taxes_recalculate value = yes }
+					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:burghers_estate_target } }
 					set_variable = { name = burghers_estate_target value = 0.5 }
-					set_variable = { name = smart_taxes_recalculate value = yes }
+					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:peasants_estate_target } }
 					set_variable = { name = peasants_estate_target value = 0.5 }
-					set_variable = { name = smart_taxes_recalculate value = yes }
+					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:tribes_estate_target } }
 					set_variable = { name = tribes_estate_target value = 0.5 }
-					set_variable = { name = smart_taxes_recalculate value = yes }
+					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:cossacks_estate_target } }
 					set_variable = { name = cossacks_estate_target value = 0.5 }
-					set_variable = { name = smart_taxes_recalculate value = yes }
+					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:dhimmi_estate_target } }
 					set_variable = { name = dhimmi_estate_target value = 0.5 }
-					set_variable = { name = smart_taxes_recalculate value = yes }
+					smart_taxes_recompute_tax_rates = {}
 				}
 			}
 		}
