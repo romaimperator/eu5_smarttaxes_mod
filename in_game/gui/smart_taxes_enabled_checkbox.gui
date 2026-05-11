@@ -1,5 +1,5 @@
 ﻿types SmartTaxes {
-	type smart_taxes_replacement_enable_checkbox = button_checkbox_auto = {
+	type smart_taxes_replacement_enable_checkbox = button_checkbox_auto {
 		datacontext = "[TaxRateSetting.GetEstate]"
 		datacontext = "[TaxRateSetting.GetEstate.GetType]"
 		size = { 22 22 }
