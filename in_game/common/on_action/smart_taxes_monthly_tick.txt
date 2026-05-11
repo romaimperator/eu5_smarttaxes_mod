@@ -70,6 +70,7 @@ smart_taxes_monthly_tick = {
 	}
 	effect = {
 		if = { limit = { debug_only = yes } debug_log = "Smart Taxes: running monthly tick" }
+		smart_taxes_trigger_swap_to_smart_taxes = {} # check if we need to disable vanilla automation
 	}
 }
 

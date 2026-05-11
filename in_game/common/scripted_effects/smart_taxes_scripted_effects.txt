@@ -1,3 +1,7 @@
 smart_taxes_recompute_tax_rates = {
 	set_variable = { name = smart_taxes_recalculate value = yes }
 }
+
+smart_taxes_trigger_swap_to_smart_taxes = {
+	set_variable = { name = smart_taxes_swap_to_smart_taxes value = yes }
+}
