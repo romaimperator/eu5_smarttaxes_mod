@@ -1,16 +1,12 @@
 ﻿types SmartTaxes {
 	type smart_taxes_topbar = widget {
+		size = { 0 0 }
 		state = {
-			name = smart_taxes_hide
+			name = smart_taxes_topbar
 			trigger_on_create = yes
-			next = smart_taxes_show
-			on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_show')]"
-		}
-		state = {
-			name = smart_taxes_show
 			duration = 0.1
 			on_finish = "[GetScriptedGui('smart_taxes_topbar_hide').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-			next = smart_taxes_hide
+			on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_topbar')]"
 		}
 		visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_show_topbar_to_recompute').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 		datacontext = "[GetEconomyView]"
@@ -35,11 +31,12 @@
 		item = {
 			overlappingitembox = {
 				size = { 0 0 }
-				visible_on_create = no
+				visible_at_creation = no
 				visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
 				state = {
 					name = _show
 					on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
+					on_start = "[GetScriptedGui('smart_taxes_enabled').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('enable', MakeScopeBool('(bool)yes')).End)]"
 				}
 			}
 		}

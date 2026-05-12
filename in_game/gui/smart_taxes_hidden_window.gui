@@ -21,10 +21,12 @@
 					on_finish = "[GetScriptedGui('smart_taxes_setup_defaults').Execute(GuiScope.AddScope('country', GetPlayer.MakeScope).End)]"
 					on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_init')]"
 				}
-			}
-
-			text_single = {
-				raw_text = "HI"
+				state = {
+					name = smart_taxes_one_time_init
+					trigger_on_create = yes
+					duration = 1
+					on_finish = "[GetScriptedGui('smart_taxes_one_time_init').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				}
 			}
 			smart_taxes_topbar = {}
 			smart_taxes_swap_to_smart_taxes = {}
