@@ -36,7 +36,6 @@
 				state = {
 					name = _show
 					on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
-					on_start = "[GetScriptedGui('smart_taxes_enabled').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('enable', MakeScopeBool('(bool)yes')).End)]"
 				}
 			}
 		}

@@ -63,7 +63,7 @@ smart_taxes_topbar_hide = {
 }
 
 smart_taxes_enabled = {
-	saved_scopes = { estate_type enable }
+	saved_scopes = { estate_type }
 
 	is_shown = {
 		OR = {
@@ -80,53 +80,32 @@ smart_taxes_enabled = {
 	effect = {
 		switch = { trigger = scope:estate_type
 			estate_type:nobles_estate = {
-				if = { limit = { exists = scope:enable } remove_variable = nobles_estate_disabled }
-				else = {
-					if = { limit = { not = { exists = var:nobles_estate_disabled } } set_variable = { name = nobles_estate_disabled value = yes } }
-					else = { remove_variable = nobles_estate_disabled }
-				}
+				if = { limit = { not = { exists = var:nobles_estate_disabled } } set_variable = { name = nobles_estate_disabled value = yes } }
+				else = { remove_variable = nobles_estate_disabled }
 			}
 			estate_type:clergy_estate = {
-				if = { limit = { exists = scope:enable } remove_variable = clergy_estate_disabled }
-				else = {
-					if = { limit = { not = { exists = var:clergy_estate_disabled } } set_variable = { name = clergy_estate_disabled value = yes } }
-					else = { remove_variable = clergy_estate_disabled }
-				}
+				if = { limit = { not = { exists = var:clergy_estate_disabled } } set_variable = { name = clergy_estate_disabled value = yes } }
+				else = { remove_variable = clergy_estate_disabled }
 			}
 			estate_type:burghers_estate = {
-				if = { limit = { exists = scope:enable } remove_variable = burghers_estate_disabled }
-				else = {
-					if = { limit = { not = { exists = var:burghers_estate_disabled } } set_variable = { name = burghers_estate_disabled value = yes } }
-					else = { remove_variable = burghers_estate_disabled }
-				}
+				if = { limit = { not = { exists = var:burghers_estate_disabled } } set_variable = { name = burghers_estate_disabled value = yes } }
+				else = { remove_variable = burghers_estate_disabled }
 			}
 			estate_type:peasants_estate = {
-				if = { limit = { exists = scope:enable } remove_variable = peasants_estate_disabled }
-				else = {
-					if = { limit = { not = { exists = var:peasants_estate_disabled } } set_variable = { name = peasants_estate_disabled value = yes } }
-					else = { remove_variable = peasants_estate_disabled }
-				}
+				if = { limit = { not = { exists = var:peasants_estate_disabled } } set_variable = { name = peasants_estate_disabled value = yes } }
+				else = { remove_variable = peasants_estate_disabled }
 			}
 			estate_type:tribes_estate = {
-				if = { limit = { exists = scope:enable } remove_variable = tribes_estate_disabled }
-				else = {
-					if = { limit = { not = { exists = var:tribes_estate_disabled } } set_variable = { name = tribes_estate_disabled value = yes } }
-					else = { remove_variable = tribes_estate_disabled }
-				}
+				if = { limit = { not = { exists = var:tribes_estate_disabled } } set_variable = { name = tribes_estate_disabled value = yes } }
+				else = { remove_variable = tribes_estate_disabled }
 			}
 			estate_type:cossacks_estate = {
-				if = { limit = { exists = scope:enable } remove_variable = cossacks_estate_disabled }
-				else = {
-					if = { limit = { not = { exists = var:cossacks_estate_disabled } } set_variable = { name = cossacks_estate_disabled value = yes } }
-					else = { remove_variable = cossacks_estate_disabled }
-				}
+				if = { limit = { not = { exists = var:cossacks_estate_disabled } } set_variable = { name = cossacks_estate_disabled value = yes } }
+				else = { remove_variable = cossacks_estate_disabled }
 			}
 			estate_type:dhimmi_estate = {
-				if = { limit = { exists = scope:enable } remove_variable = dhimmi_estate_disabled }
-				else = {
-					if = { limit = { not = { exists = var:dhimmi_estate_disabled } } set_variable = { name = dhimmi_estate_disabled value = yes } }
-					else = { remove_variable = dhimmi_estate_disabled }
-				}
+				if = { limit = { not = { exists = var:dhimmi_estate_disabled } } set_variable = { name = dhimmi_estate_disabled value = yes } }
+				else = { remove_variable = dhimmi_estate_disabled }
 			}
 		}
 	}
