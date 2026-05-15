@@ -3,8 +3,6 @@
 		datacontext = "[TaxRateSetting.GetEstate]"
 		datacontext = "[TaxRateSetting.GetEstate.GetType]"
 		size = { 22 22 }
-		visible = "[Not(TaxRateSetting.IsUsingAutoTaxRate)]"
-		# visible = no
 		enabled = "[Not(IsPlayerAIEnabled('finances'))]"
 		checked = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', EstateType.MakeScope).End)]"
 		onclick = "[GetScriptedGui('smart_taxes_enabled').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', EstateType.MakeScope).End)]"

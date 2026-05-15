@@ -12,31 +12,18 @@
 		datacontext = "[GetEconomyView]"
 		datamodel = "[EconomyView.GetTaxRateSettings]"
 		item = {
-			smart_taxes_estate_tax_slider = {}
-		}
-	}
-
-	type smart_taxes_swap_to_smart_taxes = widget {
-		size = { 0 0 }
-		state = {
-			name = smart_taxes_swap_to_smart_taxes
-			trigger_on_create = yes
-			duration = 1
-			on_finish = "[GetScriptedGui('smart_taxes_trigger_swap_to_smart_taxes').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-			on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_swap_to_smart_taxes')]"
-		}
-		visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_trigger_swap_to_smart_taxes').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
-		datacontext = "[GetEconomyView]"
-		datamodel = "[EconomyView.GetTaxRateSettings]"
-		item = {
-			overlappingitembox = {
-				size = { 0 0 }
-				visible_at_creation = no
-				visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
-				state = {
-					name = _show
-					on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
+			widget = {
+				overlappingitembox = {
+					size = { 0 0 }
+					visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
+					state = {
+						name = _show
+						trigger_on_create = yes
+						on_start = "[GetScriptedGui('debug_check').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
+					}
 				}
+				smart_taxes_estate_tax_slider = {}
 			}
 		}
 	}

@@ -6,47 +6,33 @@
 				if = { limit = { not = { exists = var:nobles_estate_target } }
 					set_variable = { name = nobles_estate_target value = 0.5 }
 					smart_taxes_recompute_tax_rates = {}
-					smart_taxes_trigger_swap_to_smart_taxes = {}
 				}
 				if = { limit = { not = { exists = var:clergy_estate_target } }
 					set_variable = { name = clergy_estate_target value = 0.5 }
 					smart_taxes_recompute_tax_rates = {}
-					smart_taxes_trigger_swap_to_smart_taxes = {}
 				}
 				if = { limit = { not = { exists = var:burghers_estate_target } }
 					set_variable = { name = burghers_estate_target value = 0.5 }
 					smart_taxes_recompute_tax_rates = {}
-					smart_taxes_trigger_swap_to_smart_taxes = {}
 				}
 				if = { limit = { not = { exists = var:peasants_estate_target } }
 					set_variable = { name = peasants_estate_target value = 0.5 }
 					smart_taxes_recompute_tax_rates = {}
-					smart_taxes_trigger_swap_to_smart_taxes = {}
 				}
 				if = { limit = { not = { exists = var:tribes_estate_target } }
 					set_variable = { name = tribes_estate_target value = 0.5 }
 					smart_taxes_recompute_tax_rates = {}
-					smart_taxes_trigger_swap_to_smart_taxes = {}
 				}
 				if = { limit = { not = { exists = var:cossacks_estate_target } }
 					set_variable = { name = cossacks_estate_target value = 0.5 }
 					smart_taxes_recompute_tax_rates = {}
-					smart_taxes_trigger_swap_to_smart_taxes = {}
 				}
 				if = { limit = { not = { exists = var:dhimmi_estate_target } }
 					set_variable = { name = dhimmi_estate_target value = 0.5 }
 					smart_taxes_recompute_tax_rates = {}
-					smart_taxes_trigger_swap_to_smart_taxes = {}
 				}
 			}
 		}
-	}
-}
-
-# Root is the country
-smart_taxes_one_time_init = {
-	effect = {
-		smart_taxes_trigger_swap_to_smart_taxes = {}
 	}
 }
 
@@ -108,15 +94,5 @@ smart_taxes_enabled = {
 				else = { remove_variable = dhimmi_estate_disabled }
 			}
 		}
-	}
-}
-
-smart_taxes_trigger_swap_to_smart_taxes = {
-	is_shown = {
-		exists = var:smart_taxes_swap_to_smart_taxes
-	}
-
-	effect = {
-		remove_variable = smart_taxes_swap_to_smart_taxes
 	}
 }
