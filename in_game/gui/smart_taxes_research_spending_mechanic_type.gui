@@ -31,7 +31,7 @@
         text_single = {
           autoresize = yes
           align = right|nobaseline
-          text = "[FixedPointToFloat(Player.MakeScope.ScriptValue('tge_research_economic_share_sv_tooltip'))|2+=]@gold!"
+          raw_text = "[FixedPointToFloat(Player.MakeScope.ScriptValue('tge_research_economic_share_sv_tooltip'))|2+=]@gold!"
         }
 
         tooltipwidget = {
