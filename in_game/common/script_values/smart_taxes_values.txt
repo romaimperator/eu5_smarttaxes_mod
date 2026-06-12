@@ -31,27 +31,6 @@
 	max = smart_taxes_estate_max_tax
 }
 
-smart_taxes_current_target_satisfaction = {
-	scope:country = {
-		if = { limit = { scope:estate_type = estate_type:nobles_estate }
-			value = var:nobles_estate_target
-		} else_if = { limit = { scope:estate_type = estate_type:clergy_estate }
-			value = var:clergy_estate_target
-		} else_if = { limit = { scope:estate_type = estate_type:burghers_estate }
-			value = var:burghers_estate_target
-		} else_if = { limit = { scope:estate_type = estate_type:peasants_estate }
-			value = var:peasants_estate_target
-		} else_if = { limit = { scope:estate_type = estate_type:tribes_estate }
-			value = var:tribes_estate_target
-		} else_if = { limit = { scope:estate_type = estate_type:cossacks_estate }
-			value = var:cossacks_estate_target
-		} else_if = { limit = { scope:estate_type = estate_type:dhimmi_estate }
-			value = var:dhimmi_estate_target
-		}
-	}
-}
-
-
 smart_taxes_estate_max_tax = {
 	scope:country = {
 		if = { limit = { scope:estate_type = estate_type:nobles_estate }

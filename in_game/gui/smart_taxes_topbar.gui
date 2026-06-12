@@ -19,7 +19,6 @@
 					state = {
 						name = _show
 						trigger_on_create = yes
-						on_start = "[GetScriptedGui('debug_check').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 						on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
 					}
 				}
