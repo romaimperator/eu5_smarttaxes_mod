@@ -18,7 +18,7 @@ widget = {
 			}
 			state = {
 				name = smart_taxes_apply
-				duration = 2
+				duration = 0.5
 				on_finish = "[GetScriptedGui('smart_taxes_clear_recalculate').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 			}
 			datacontext = "[GetEconomyView]"
