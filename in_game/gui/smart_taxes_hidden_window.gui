@@ -1,28 +1,37 @@
-﻿basic_dialog = {
+﻿# Off-screen driver that applies smart tax rates when the recalculate flag is set.
+widget = {
 	name = "smart_taxes_hidden_window"
 	widgetid = smart_taxes_hidden_window
 	layer = top
 	visible = "[EqualTo_CFixedPoint('(CFixedPoint)0', '(CFixedPoint)0')]"
-	parentanchor = center
-
 	position = { -10000 1 }
-	blockoverride "header_text" {
-		raw_text = "Smart Taxes: Hidden Window"
-	}
-	blockoverride "content" {
-		vbox = {
-			visible = "[GetPlayer.Exists]"
-
-			overlappingitembox = {
-				state = {
-					name = smart_taxes_init
-					trigger_on_create = yes
-					duration = 2
-					on_finish = "[GetScriptedGui('smart_taxes_setup_defaults').Execute(GuiScope.AddScope('country', GetPlayer.MakeScope).End)]"
-					on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_init')]"
+	widget = {
+		visible = "[GetPlayer.Exists]"
+		# Rebuilds and re-fires _show each time the recalculate flag is set; tears down when it clears.
+		widget = {
+			size = { 0 0 }
+			visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_should_recalculate').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+			state = {
+				name = _show
+				duration = 0.5
+				on_finish = "[GetScriptedGui('smart_taxes_clear_recalculate').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			}
+			datacontext = "[GetEconomyView]"
+			datamodel = "[EconomyView.GetTaxRateSettings]"
+			item = {
+				widget = {
+					overlappingitembox = {
+						size = { 0 0 }
+						visible = "[And(TaxRateSetting.IsUsingAutoTaxRate, GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End))]"
+						state = {
+							name = _show
+							trigger_on_create = yes
+							on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
+						}
+					}
+					smart_taxes_estate_tax_slider = {}
 				}
 			}
-			smart_taxes_topbar = {}
 		}
 	}
 }

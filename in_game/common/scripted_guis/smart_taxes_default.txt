@@ -1,48 +1,40 @@
 ﻿smart_taxes_setup_defaults = {
 	effect = {
 		if = { limit = { exists = scope:country }
-			# debug_log = "Smart Taxes: Setup Defaults"
 			scope:country = {
 				if = { limit = { not = { exists = var:nobles_estate_target } }
 					set_variable = { name = nobles_estate_target value = 0.5 }
-					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:clergy_estate_target } }
 					set_variable = { name = clergy_estate_target value = 0.5 }
-					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:burghers_estate_target } }
 					set_variable = { name = burghers_estate_target value = 0.5 }
-					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:peasants_estate_target } }
 					set_variable = { name = peasants_estate_target value = 0.5 }
-					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:tribes_estate_target } }
 					set_variable = { name = tribes_estate_target value = 0.5 }
-					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:cossacks_estate_target } }
 					set_variable = { name = cossacks_estate_target value = 0.5 }
-					smart_taxes_recompute_tax_rates = {}
 				}
 				if = { limit = { not = { exists = var:dhimmi_estate_target } }
 					set_variable = { name = dhimmi_estate_target value = 0.5 }
-					smart_taxes_recompute_tax_rates = {}
 				}
 			}
 		}
 	}
 }
 
-smart_taxes_show_topbar_to_recompute = {
+smart_taxes_should_recalculate = {
 	is_shown = {
 		exists = var:smart_taxes_recalculate
 	}
 }
 
-smart_taxes_topbar_hide = {
+smart_taxes_clear_recalculate = {
 	effect = {
 		remove_variable = smart_taxes_recalculate
 	}
@@ -52,47 +44,20 @@ smart_taxes_enabled = {
 	saved_scopes = { estate_type }
 
 	is_shown = {
-		OR = {
-			AND = { scope:estate_type = estate_type:nobles_estate not = { exists = root.var:nobles_estate_disabled } }
-			AND = { scope:estate_type = estate_type:clergy_estate not = { exists = root.var:clergy_estate_disabled } }
-			AND = { scope:estate_type = estate_type:burghers_estate not = { exists = root.var:burghers_estate_disabled } }
-			AND = { scope:estate_type = estate_type:peasants_estate not = { exists = root.var:peasants_estate_disabled } }
-			AND = { scope:estate_type = estate_type:tribes_estate not = { exists = root.var:tribes_estate_disabled } }
-			AND = { scope:estate_type = estate_type:cossacks_estate not = { exists = root.var:cossacks_estate_disabled } }
-			AND = { scope:estate_type = estate_type:dhimmi_estate not = { exists = root.var:dhimmi_estate_disabled } }
+		root = {
+			is_target_in_variable_list = { name = smart_taxes_enabled_estates target = scope:estate_type }
 		}
 	}
 
 	effect = {
-		switch = { trigger = scope:estate_type
-			estate_type:nobles_estate = {
-				if = { limit = { not = { exists = var:nobles_estate_disabled } } set_variable = { name = nobles_estate_disabled value = yes } }
-				else = { remove_variable = nobles_estate_disabled }
+		root = {
+			if = {
+				limit = { is_target_in_variable_list = { name = smart_taxes_enabled_estates target = scope:estate_type } }
+				remove_list_variable = { name = smart_taxes_enabled_estates target = scope:estate_type }
+			} else = {
+				add_to_variable_list = { name = smart_taxes_enabled_estates target = scope:estate_type }
 			}
-			estate_type:clergy_estate = {
-				if = { limit = { not = { exists = var:clergy_estate_disabled } } set_variable = { name = clergy_estate_disabled value = yes } }
-				else = { remove_variable = clergy_estate_disabled }
-			}
-			estate_type:burghers_estate = {
-				if = { limit = { not = { exists = var:burghers_estate_disabled } } set_variable = { name = burghers_estate_disabled value = yes } }
-				else = { remove_variable = burghers_estate_disabled }
-			}
-			estate_type:peasants_estate = {
-				if = { limit = { not = { exists = var:peasants_estate_disabled } } set_variable = { name = peasants_estate_disabled value = yes } }
-				else = { remove_variable = peasants_estate_disabled }
-			}
-			estate_type:tribes_estate = {
-				if = { limit = { not = { exists = var:tribes_estate_disabled } } set_variable = { name = tribes_estate_disabled value = yes } }
-				else = { remove_variable = tribes_estate_disabled }
-			}
-			estate_type:cossacks_estate = {
-				if = { limit = { not = { exists = var:cossacks_estate_disabled } } set_variable = { name = cossacks_estate_disabled value = yes } }
-				else = { remove_variable = cossacks_estate_disabled }
-			}
-			estate_type:dhimmi_estate = {
-				if = { limit = { not = { exists = var:dhimmi_estate_disabled } } set_variable = { name = dhimmi_estate_disabled value = yes } }
-				else = { remove_variable = dhimmi_estate_disabled }
-			}
+			smart_taxes_recompute_tax_rates = {}
 		}
 	}
 }
