@@ -39,7 +39,7 @@ types EconomyLateralviewTypes
 					text = ""
 				}
 			}
-
+			
 			text_single = {
 				autoresize = yes
 				align = right|nobaseline
@@ -58,7 +58,7 @@ types EconomyLateralviewTypes
 				block "adjustable_card_header_bg"{
 					using = bg_card_header_01
 				}
-
+				
 				block "top_widget" {}
 				block "budget_card_frame" {
 					using = bg_cabinet_card_frame
@@ -76,7 +76,7 @@ types EconomyLateralviewTypes
 		direction = horizontal
 		allow_outside = yes
 
-
+		
 
 		step = 0.01
 		wheelstep = 0.01
@@ -100,7 +100,7 @@ types EconomyLateralviewTypes
 			using = economy_slider_dec_button
 
 			# blockoverride "economy_slider_dec_button_config"{
-			#
+			#	
 			#	alpha = 0
 			#
 			#	state = {
@@ -125,7 +125,7 @@ types EconomyLateralviewTypes
 
 			# blockoverride "economy_slider_inc_button_config"{
 			#	alpha = 0
-			#
+			#	
 			#	state = {
 			#		name = show_slider_buttons
 			#		alpha = 1
@@ -190,7 +190,7 @@ template economy_main_tabs {
 
 	button_main_tab_alt = {
 		using = layoutpolicy_expanding
-		tooltipwidget = {
+		tooltipwidget = { 
 			using = SubTabMarketsTooltip
 		}
 		widget = {
@@ -232,7 +232,7 @@ template EstateIncomeBreakdownTooltip {
 			icon = {
 				using = tooltip_title_icon_size
 				texture = "[GetEstateIcon(TaxRateSetting.GetEstate.GetType)]"
-
+				
 				datacontext = "[TaxRateSetting.GetEstate]"
 				tooltipwidget = {
 					using = Estate_tooltip
@@ -245,12 +245,12 @@ template EstateIncomeBreakdownTooltip {
 		}
 		blockoverride "tooltip_content" {
 			datacontext = "[TaxRateSetting.GetEstate]"
-			TooltipTextBlock = {
+			TooltipTextBlock = {																						
 				blockoverride "text"	{
 					text = "ESTATE_CURRENT_TAX_TT"
 				}
 			}
-
+			
 			TooltipStringPairList = {
 				visible = "[Not(StringIsEmpty(TaxRateSetting.GetTaxSettingsTooltip))]"
 				textcontext = "[TaxRateSetting.GetTaxSettingsTooltip]"
@@ -262,7 +262,7 @@ template EstateIncomeBreakdownTooltip {
 					text = "[TaxRateSetting.GetEstate.GetCollectTaxesInfo]"
 				}
 			}
-
+		
 			TooltipStringPairList = {
 				visible = "[And(TaxRateSetting.GetEstate.CanCollectTaxes, Not(StringIsEmpty(TaxRateSetting.GetIncomeBreakdown)))]"
 				textcontext = "[TaxRateSetting.GetIncomeBreakdown]"
@@ -323,7 +323,7 @@ lateralview = {
 
 			AutomatedSection = {
 				datacontext = "[GetAutomatedSystemItem('finances')]"
-
+				
 				blockoverride "glow_anim_automation_visible" {
 					visible = "[AutomatedSystemsItem.IsEnabled]"
 				}
@@ -417,7 +417,7 @@ lateralview = {
 							align = nobaseline
 						}
 					}
-
+					
 					subheader_unified_icon = {
 						datacontext = "[Player]"
 						tooltipwidget = {
@@ -440,7 +440,7 @@ lateralview = {
 
 			economy_plotline = {
 				using = bg_age_event_frame
-
+				
 				blockoverride "size" {
 					layoutpolicy_horizontal = expanding
 					size = { -1 220 }
@@ -458,8 +458,8 @@ lateralview = {
 					marker = {
 						text_single = {
 							position = { -100 -10 }
-							autoresize = yes
-
+							autoresize = yes				
+							
 							margin_right = 4
 							margin_top = 4
 							align = left|nobaseline
@@ -468,8 +468,8 @@ lateralview = {
 							default_format = "#t"
 
 							text = "[EconomyView.GetDataPointValue(PlotLine.GetSnappedIndexNearMouse)]"
-						}
-					}
+						}					
+					}				
 				}
 				blockoverride "maxvalue" {
 					raw_text = "[EconomyView.GetHistoricalMaxBalance|+2]@gold_balance!"
@@ -541,25 +541,25 @@ lateralview = {
 					parentanchor = center
 					size = { 100% 40 }
 					visible = "[GetPlayer.GetEconomy.IsDuringBankruptcy]"
-
-
+					
+					
 					tooltipwidget = {
-
+										
 						ContextualTooltipType = {
 							blockoverride "title_text" {
-
+								
 								text = "IN_BANKRUPTCY"
 							}
-
+							
 							blockoverride "title_icon_texture" {
 								texture = "[GetConceptTexture('bankrupt')]"
 							}
 
-
+							
 							blockoverride "concept_link" {
 								text = [bankrupt|e]
 							}
-
+							
 							blockoverride "tooltip_content" {
 								datacontext = "[GetPlayer]"
 								TooltipStringPairList = {
@@ -569,7 +569,7 @@ lateralview = {
 							}
 						}
 					}
-
+					
 
 					background = {
 						texture = "gfx/interface/colors/black.dds"
@@ -590,7 +590,7 @@ lateralview = {
 							blend_mode = alphamultiply
 						}
 					}
-
+					
 					hbox = {
 						spacing = 5
 
@@ -614,7 +614,7 @@ lateralview = {
 								value = "[GetPlayer.GetBankruptcyProgress]"
 								color = { 1 1 1 1 }
 							}
-
+							
 							pieslice_no_highlight = {
 								alwaystransparent = yes
 								texture = "gfx/interface/pie_charts/pie_chart_blue_progress.dds"
@@ -703,7 +703,7 @@ lateralview = {
 							}
 
 							widget = {
-								size = { 220 40 }
+								size = { 220 40 }								
 								using = bg_paper_card
 								using = bg_cabinet_card_frame
 								widget = {
@@ -713,17 +713,17 @@ lateralview = {
 										texture = "gfx/interface/component_masks/age_event_mask_frame_horizontal.dds"
 										texture_density = 2
 										margin = {30 -4}
-
+		
 										modify_texture = {
 											visible = "[GreaterThanOrEqualTo_CFixedPoint(EconomyView.GetEstimatedBalance, '(CFixedPoint)0')]"
 											using = color_light_green_texture
 										}
-
+		
 										modify_texture = {
 											visible = "[LessThanOrEqualTo_CFixedPoint(EconomyView.GetEstimatedBalance, '(CFixedPoint)0')]"
 											using = color_red_texture
 										}
-
+		
 										modify_texture = {
 											texture = "gfx/interface/component_masks/mask_fade_horizontal_middle.dds"
 											blend_mode = alphamultiply
@@ -743,14 +743,14 @@ lateralview = {
 											blockoverride "title_icon_texture" {
 												texture = "[GetConceptTexture('balance')]"
 											}
-
+										
 											blockoverride "title_text" {
 												text = "BALANCE_TOOLTIP_T"
 											}
 											blockoverride "concept_link" {
 												text = [balance|e]
 											}
-
+											
 											blockoverride "tooltip_content" {
 												TooltipScrolledStringPairList = {
 													blockoverride "block_scrollarea" { maximumsize = { -1 450 } }
@@ -891,10 +891,10 @@ lateralview = {
 										text = "INCOME_TITLE"
 										tooltipwidget = {
 												ContextualTooltipType = {
-													name = "BALANCE_INCOME_TOOLTIP"
+													name = "BALANCE_INCOME_TOOLTIP"		
 													blockoverride "title_icon_texture" {
 														texture = "[GetConceptTexture('income')]"
-													}
+													}					
 													blockoverride "title_text" { text = "INCOME_TOOLTIP_T" }
 													blockoverride "concept_link" { text = "[income|e]"}
 													blockoverride "tooltip_content" {
@@ -919,16 +919,16 @@ lateralview = {
 													texture = "gfx/interface/icons/resources/gold.dds"
 												}
 											}
-
+				
 											blockoverride "concept_link" {
 												text = "[balance|e]"
 											}
-
+				
 											lowpriotextcontext = "[SelectLocalization( EconomyView.UnusedMaintenanceSettingsVisible, 'UNUSED_MAINTENANCE_SETTINGS_TOGGLE_IS_ON', 'UNUSED_MAINTENANCE_SETTINGS_TOGGLE_IS_OFF' )]"
-
+				
 										}
 									}
-
+									
 									down = "[EconomyView.UnusedMaintenanceSettingsVisible]"
 									onclick = "[EconomyView.ToggleUnusedMaintenanceSettings]"
 
@@ -959,10 +959,10 @@ lateralview = {
 										text = "EXPENSE_TITLE"
 										tooltipwidget = {
 											ContextualTooltipType = {
-												name = "BALANCE_EXPENSE_TOOLTIP"
+												name = "BALANCE_EXPENSE_TOOLTIP"		
 												blockoverride "title_icon_texture" {
 													texture = "[GetConceptTexture('expenses')]"
-												}
+												}					
 												blockoverride "title_text" { text = "EXPENSE_TOOLTIP_T" }
 												blockoverride "concept_link" { text = "[expense|e]"}
 												blockoverride "tooltip_content" {
@@ -982,7 +982,7 @@ lateralview = {
 								blockoverride "image" {
 									texture = "gfx/interface/illustrations/bg/bg_economy.dds"
 								}
-
+								
 								blockoverride "scroll_list_layout" {
 									hbox = {
 										using = layoutpolicy_expanding
@@ -1045,7 +1045,7 @@ lateralview = {
 															}
 															tooltipwidget = { BasicFunctionalTooltip = {} }
 														}
-
+												
 														tooltipwidget = {
 															using = MintingMaitenanceTooltip
 														}
@@ -1055,7 +1055,7 @@ lateralview = {
 												blockoverride "bottom_widget" {
 													hbox = {
 														margin = { 5 0 }
-
+														
 
 														widget = {
 															using = layoutpolicy_expanding
@@ -1086,7 +1086,7 @@ lateralview = {
 															align = center|nobaseline
 															size = { 105 20 }
 															raw_text = "[GetPlayer.GetFixedPointCurrencyValue('inflation')|2%] ([EconomyView.GetInflationChange|2-=%])@inflation!"
-
+															
 															datacontext = "[GetPlayer]"
 															tooltipwidget = {
 																using = InflationTooltip
@@ -1116,7 +1116,7 @@ lateralview = {
 															name = "tax_slider"
 															visible = "[Not(TaxRateSetting.IsUsingAutoTaxRate)]"
 														}
-
+														
 														blockoverride "top_widget" {
 															hbox = {
 																margin = { 5 0 }
@@ -1126,7 +1126,7 @@ lateralview = {
 																	size = { 31 31 }
 																	texture = "[GetEstateIcon(TaxRateSetting.GetEstate.GetType)]"
 																	texture_density = 2
-
+																	
 																	datacontext = "[TaxRateSetting.GetEstate]"
 																	tooltipwidget = {
 																		using = Estate_tooltip
@@ -1146,14 +1146,13 @@ lateralview = {
 																	visible = "[TaxRateSetting.GetEstate.CanCollectTaxes]"
 																	align = right|nobaseline
 																	raw_text = "[TaxRateSetting.GetIncome|2+=]@income!"
-
+																	
 																}
 																icon = {
 																	size = { 20 20 }
 																	using = warning_icon_texture
 																	visible = "[Not(TaxRateSetting.GetEstate.CanCollectTaxes)]"
 																}
-																# Shown when the automation is inactive
 																smart_taxes_replacement_enable_checkbox = {}
 															}
 
@@ -1193,7 +1192,7 @@ lateralview = {
 																						}
 																					}
 																				}
-
+		
 																				blockoverride "title_text" {
 																					datacontext = "[TaxRateSetting.GetEstate]"
 																					text = "ESTATE_TAX_MIN_MAX_T"
@@ -1202,21 +1201,21 @@ lateralview = {
 																				blockoverride "concept_link" {
 																					text = [tax|E]
 																				}
-
+																				
 																				blockoverride "tooltip_content" {
 																					datacontext = "[TaxRateSetting.GetEstate]"
-																					TooltipTextBlock = {
+																					TooltipTextBlock = {																						
 																						blockoverride "text"	{
 																							text = "ESTATE_CURRENT_TAX_TT"
 																						}
 																					}
-
+																					
 																					TooltipStringPairList = {
 																						textcontext = "[TaxRateSetting.GetTaxSettingsTooltip]"
 																					}
 
 																					TooltipTextBlock = {
-																						visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
+																						visible = "[TaxRateSetting.IsUsingAutoTaxRate]"																			
 																						blockoverride "text"	{
 																							text = "ESTATE_CURRENT_TAX_AUTOMATED_TT"
 																						}
@@ -1249,42 +1248,42 @@ lateralview = {
 																		using = Font_Size_Very_Small
 																		visible = "[TaxRateSetting.HasImpact]"
 																		raw_text = "[TaxRateSetting.GetImpact]"
-
+																		
 																		datacontext = "[TaxRateSetting.GetEstate]"
 																		tooltipwidget = {
 																			using = estate_satisfaction_tooltip
 																		}
 																	}
-
+	
 																	widget = {
 																		datacontext = "[TaxRateSetting.GetEstate]"
 																		tooltipwidget = {
 																			using = estate_satisfaction_tooltip
 																		}
 																		size = { 14 14 }
-
+	
 																		icon = {
 																			name = "sad face"
 																			visible = "[LessThanOrEqualTo_CFixedPoint(TaxRateSetting.GetImpactValue,'(CFixedPoint)0.25')]"
-
+	
 																			size = { 100% 100% }
 																			texture = "gfx/interface/icons/flat_icons/sad.dds"
 																			texture_density = 2
 																		}
-
+	
 																		icon = {
 																			name = "neutral face"
 																			visible = "[BetweenInclusiveOfMax_CFixedPoint(TaxRateSetting.GetImpactValue,'(CFixedPoint)0.25', '(CFixedPoint)0.5')]"
-
+	
 																			size = { 100% 100% }
 																			texture = "gfx/interface/icons/flat_icons/neutral.dds"
 																			texture_density = 2
 																		}
-
+	
 																		icon = {
 																			name = "happy face"
 																			visible = "[GreaterThan_CFixedPoint(TaxRateSetting.GetImpactValue,'(CFixedPoint)0.5')]"
-
+	
 																			size = { 100% 100% }
 																			texture = "gfx/interface/icons/flat_icons/happy.dds"
 																			texture_density = 2
@@ -1308,7 +1307,7 @@ lateralview = {
 
 																		button_square_minus = {
 																			size = { 15 15 }
-																			enabled = yes
+																			enabled = "[TaxRateSetting.IsSatisfactionTargetDecEnabled]"
 																			tooltipwidget = { BasicFunctionalTooltip = {} }
 																			action_tooltip = {
 																				click_type = left
@@ -1368,7 +1367,7 @@ lateralview = {
 
 																		button_square_plus = {
 																			size = { 15 15 }
-																			enabled = yes
+																			enabled = "[TaxRateSetting.IsSatisfactionTargetIncEnabled]"
 																			tooltipwidget = { BasicFunctionalTooltip = {} }
 																			action_tooltip = {
 																				click_type = left
@@ -1453,7 +1452,7 @@ lateralview = {
 														blockoverride "title_text" {
 															text = "INTEREST_INC_HEADER"
 														}
-
+														
 														blockoverride "title_icon" {
 															icon = {
 																using = tooltip_title_icon_size
@@ -1466,7 +1465,7 @@ lateralview = {
 														}
 
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetIncomeInfo('interest')]"
@@ -1474,7 +1473,7 @@ lateralview = {
 														}
 													}
 												}
-
+		
 
 												blockoverride "icon_texture" {
 													texture = "gfx/interface/icons/flat_icons/balance/interest.dds"
@@ -1518,7 +1517,7 @@ lateralview = {
 															text = [trade_income|E]
 														}
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetIncomeInfo('trade')]"
@@ -1534,7 +1533,7 @@ lateralview = {
 														}
 													}
 												}
-
+												
 
 												blockoverride "icon_texture" {
 													texture = "gfx/interface/icons/flat_icons/balance/trade.dds"
@@ -1548,7 +1547,7 @@ lateralview = {
 													raw_text = "[EconomyView.GetIncome('trade')|2+=]@income!"
 												}
 											}
-
+											
 											#food
 											budget_card = {
 												layoutpolicy_horizontal = expanding
@@ -1578,7 +1577,7 @@ lateralview = {
 															text = [food|E]
 														}
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 300 }}
 																textcontext = "[EconomyView.GetIncomeInfo('food')]"
@@ -1586,7 +1585,7 @@ lateralview = {
 														}
 													}
 												}
-
+												
 
 												blockoverride "icon_texture" {
 													texture = "gfx/interface/icons/flat_icons/balance/food.dds"
@@ -1632,12 +1631,12 @@ lateralview = {
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetIncomeInfo('diplomacy')]"
-															}
+															}														
 														}
 													}
 												}
-
-
+												
+												
 
 												blockoverride "icon_texture" {
 													texture = "gfx/interface/icons/flat_icons/balance/diplomacy.dds"
@@ -1679,12 +1678,12 @@ lateralview = {
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetIncomeInfo('io_payments')]"
-															}
+															}														
 														}
 													}
 												}
-
-
+												
+												
 
 												blockoverride "icon_texture" {
 													texture = "gfx/interface/icons/international_organizations/payments.dds"
@@ -1723,7 +1722,7 @@ lateralview = {
 															text = [mercenary|E]
 														}
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetIncomeInfo('mercenary')]"
@@ -1745,8 +1744,8 @@ lateralview = {
 													raw_text = "[EconomyView.GetIncome('mercenary')|2+=]@income!"
 												}
 											}
-
-
+											
+											
 											#mercenaries
 											budget_card = {
 												layoutpolicy_horizontal = expanding
@@ -1771,7 +1770,7 @@ lateralview = {
 															text = [privateer|E]
 														}
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetIncomeInfo('privateer')]"
@@ -1817,7 +1816,7 @@ lateralview = {
 															text = [foreign_buildings|E]
 														}
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetIncomeInfo('foreign')]"
@@ -1826,7 +1825,7 @@ lateralview = {
 													}
 												}
 
-
+												
 
 												blockoverride "icon_texture" {
 													texture = "gfx/interface/icons/flat_icons/balance/buildings_abroad.dds"
@@ -1835,8 +1834,8 @@ lateralview = {
 												blockoverride "label" {
 													text = "FOREIGN_GOLD_BUILDINGS"
 												}
-
-
+												
+												
 
 												blockoverride "income_text" {
 													raw_text = "[EconomyView.GetIncome('foreign')|2+=]@income!"
@@ -1864,7 +1863,7 @@ lateralview = {
 
 
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetIncomeInfo('other')]"
@@ -1873,7 +1872,7 @@ lateralview = {
 													}
 												}
 
-
+												
 
 												blockoverride "icon_texture" {
 													texture = "gfx/interface/icons/flat_icons/balance/other_incomes.dds"
@@ -1910,7 +1909,7 @@ lateralview = {
 														blockoverride "header_color" {
 															using = color_economy_texture
 														}
-
+														
 														visible = "[And( MaintenanceSetting.ShowSlider,Or(MaintenanceSetting.IsVisible, EconomyView.UnusedMaintenanceSettingsVisible))]"
 														enabled = "[MaintenanceSetting.IsEnabled]"
 
@@ -1937,7 +1936,7 @@ lateralview = {
 																	align = right|nobaseline
 																	raw_text = "[MaintenanceSetting.GetExpenseWithCurrency]"
 																}
-
+																
 																button_checkbox_auto = {
 																	size = { 22 22 }
 																	visible = "[MaintenanceSetting.IsArmy]"
@@ -1974,9 +1973,9 @@ lateralview = {
 																	tooltipwidget = { BasicFunctionalTooltip = {} }
 																	# tooltipwidget = { LeftClickButtonTooltip = { blockoverride "onclick_text" { text = "[SelectLocalization( Player.AutoRaiseMaintenanceAtWar('fort'), 'TOGGLE_AUTO_FORT_MAINTENANCE_TOOLTIP_IS_ON', 'TOGGLE_AUTO_FORT_MAINTENANCE_TOOLTIP_IS_OFF' )]" } } }
 																}
-
+																
 																tooltipwidget = {
-																	using = ExpenseSettingTooltip
+																	using = ExpenseSettingTooltip			
 																}
 															}
 														}
@@ -2022,7 +2021,7 @@ lateralview = {
 																						texture = "[MaintenanceSetting.GetIcon]"
 																					}
 																				}
-
+		
 																				blockoverride "title_text" {
 																					text = "[MaintenanceSetting.GetNameWithNoTooltip]"
 																				}
@@ -2030,14 +2029,14 @@ lateralview = {
 																				blockoverride "concept_link" {
 																					text = "[maintenance|E]"
 																				}
-
+																				
 																				blockoverride "tooltip_content" {
 																					TooltipTextBlock = {
 																						blockoverride "text" {
 																							text = "EXPENSE_MAINT_TT_TEXT_LONG_ALT"
 																						}
 																					}
-
+																					
 																					TooltipStringPairList = {
 																						textcontext = "MAINTENANCE_INVESTMENT_MIN_MAX"
 																					}
@@ -2046,8 +2045,8 @@ lateralview = {
 																		}
 																	}
 
-																}
-
+																}																
+																
 																hbox = {
 																	spacing = 2
 																	text_single = {
@@ -2085,8 +2084,8 @@ lateralview = {
 																					texture = "[MaintenanceSetting.GetIcon]"
 																				}
 																			}
-
-
+	
+	
 																			blockoverride "concept_link" {
 																				text = "[MaintenanceSetting.GetName]"
 																			}
@@ -2094,8 +2093,8 @@ lateralview = {
 																				TooltipStringPairList = {
 																					textcontext = "[MaintenanceSetting.GetExpenseBenefitTooltip]"
 																				}
-
-
+																				
+																				
 																			}
 																		}
 																	}
@@ -2105,7 +2104,7 @@ lateralview = {
 													}
 												}
 											}
-
+											
 											#stability investment
 											adjustable_budget_card = {
 												layoutpolicy_horizontal = expanding
@@ -2139,12 +2138,12 @@ lateralview = {
 															align = right|nobaseline
 															raw_text = "[EconomyView.GetStabilityInvestmentExpense|2+=]@expense!"
 														}
-
+														
 														tooltipwidget = {
-															using = StabilityExpenseSettingParentTooltip
+															using = StabilityExpenseSettingParentTooltip	
 															blockoverride "content_datacontext" {
 																datacontext = "[Player.GetEconomy]"
-															}
+															}										
 														}
 													}
 												}
@@ -2173,10 +2172,10 @@ lateralview = {
 																}
 															}
 															tooltipwidget = {
-																using = StabilityExpenseSettingParentTooltip
+																using = StabilityExpenseSettingParentTooltip	
 																blockoverride "content_datacontext" {
 																	datacontext = "[Player.GetEconomy]"
-																}
+																}										
 															}
 														}
 
@@ -2202,7 +2201,7 @@ lateralview = {
 																		text = [stability|E]
 																	}
 																	blockoverride "tooltip_content" {
-
+																	
 																		TooltipStringPairList = {
 																			textcontext = "[EconomyView.GetStabilityInvestmentTooltip]"
 																		}
@@ -2227,14 +2226,14 @@ lateralview = {
 													budget_card = {
 														layoutpolicy_horizontal = expanding
 														size = { -1 30 }
+													
 
-
-
+														
 														visible = "[And( Not(MaintenanceSetting.ShowSlider), Or(MaintenanceSetting.IsVisible, EconomyView.UnusedMaintenanceSettingsVisible))]"
 														enabled = "[MaintenanceSetting.IsEnabled]"
 
 														tooltipwidget = {
-															using = ExpenseSettingTooltip
+															using = ExpenseSettingTooltip			
 														}
 
 
@@ -2249,12 +2248,12 @@ lateralview = {
 														blockoverride "income_text" {
 															raw_text = "[MaintenanceSetting.GetExpenseWithCurrency]"
 														}
-
+														
 
 													}
 												}
 											}
-
+											
 											#interest
 											budget_card = {
 												layoutpolicy_horizontal = expanding
@@ -2279,7 +2278,7 @@ lateralview = {
 															text = [interest|E]
 														}
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetExpenseInfo('interest')]"
@@ -2287,7 +2286,7 @@ lateralview = {
 														}
 													}
 												}
-
+			
 
 												blockoverride "icon_texture" {
 													texture = "gfx/interface/icons/flat_icons/balance/interest.dds"
@@ -2307,7 +2306,7 @@ lateralview = {
 												layoutpolicy_horizontal = expanding
 												size = { -1 30 }
 												visible = "[Or(Not(EqualTo_CFixedPoint(EconomyView.GetExpense('trade'), '(CFixedPoint)0')), EconomyView.UnusedMaintenanceSettingsVisible)]"
-
+												
 												tooltipmeta = {
 													texture = "gfx/interface/icons/flat_icons/balance/trade.dds"
 													game_concept = "[trade_expense|e]"
@@ -2330,7 +2329,7 @@ lateralview = {
 															text = [trade_expense|E]
 														}
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetExpenseInfo('trade')]"
@@ -2384,7 +2383,7 @@ lateralview = {
 															text = [diplomatic_expense_s|E]
 														}
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetExpenseInfo('diplomacy')]"
@@ -2411,7 +2410,7 @@ lateralview = {
 											budget_card = {
 												tooltipmeta = {
 													texture = "gfx/interface/icons/flat_icons/balance/mercenary.dds"
-													game_concept = "[mercenary_expense|e]"
+													game_concept = "[mercenary_expense|e]"													
 												}
 												layoutpolicy_horizontal = expanding
 												size = { -1 30 }
@@ -2433,13 +2432,13 @@ lateralview = {
 															text = "[mercenary_expense|e]"
 														}
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetExpenseInfo('mercenary')]"
 															}
 														}
-													}
+													}												
 												}
 
 												blockoverride "icon_texture" {
@@ -2482,7 +2481,7 @@ lateralview = {
 																textcontext = "[EconomyView.GetExpenseInfo('subsidize')]"
 															}
 														}
-													}
+													}												
 												}
 
 												blockoverride "icon_texture" {
@@ -2526,7 +2525,7 @@ lateralview = {
 																textcontext = "[EconomyView.GetExpenseInfo('privateer')]"
 															}
 														}
-													}
+													}												
 												}
 
 												blockoverride "icon_texture" {
@@ -2564,7 +2563,7 @@ lateralview = {
 
 
 														blockoverride "tooltip_content" {
-
+														
 															TooltipScrolledStringPairList = {
 																blockoverride "block_scrollarea" { maximumsize = { -1 400 } }
 																textcontext = "[EconomyView.GetExpenseInfo('other')]"
@@ -2573,7 +2572,7 @@ lateralview = {
 													}
 												}
 
-
+												
 
 												blockoverride "icon_texture" {
 													texture = "gfx/interface/icons/flat_icons/balance/other_expenses.dds"
