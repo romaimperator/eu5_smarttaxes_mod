@@ -1307,7 +1307,7 @@ lateralview = {
 
 																		button_square_minus = {
 																			size = { 15 15 }
-																			enabled = "[TaxRateSetting.IsSatisfactionTargetDecEnabled]"
+																			enabled = yes
 																			tooltipwidget = { BasicFunctionalTooltip = {} }
 																			action_tooltip = {
 																				click_type = left
@@ -1367,7 +1367,7 @@ lateralview = {
 
 																		button_square_plus = {
 																			size = { 15 15 }
-																			enabled = "[TaxRateSetting.IsSatisfactionTargetIncEnabled]"
+																			enabled = yes
 																			tooltipwidget = { BasicFunctionalTooltip = {} }
 																			action_tooltip = {
 																				click_type = left

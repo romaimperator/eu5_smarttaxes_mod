@@ -1,34 +1,4 @@
-﻿smart_taxes_setup_defaults = {
-	effect = {
-		if = { limit = { exists = scope:country }
-			scope:country = {
-				if = { limit = { not = { exists = var:nobles_estate_target } }
-					set_variable = { name = nobles_estate_target value = 0.5 }
-				}
-				if = { limit = { not = { exists = var:clergy_estate_target } }
-					set_variable = { name = clergy_estate_target value = 0.5 }
-				}
-				if = { limit = { not = { exists = var:burghers_estate_target } }
-					set_variable = { name = burghers_estate_target value = 0.5 }
-				}
-				if = { limit = { not = { exists = var:peasants_estate_target } }
-					set_variable = { name = peasants_estate_target value = 0.5 }
-				}
-				if = { limit = { not = { exists = var:tribes_estate_target } }
-					set_variable = { name = tribes_estate_target value = 0.5 }
-				}
-				if = { limit = { not = { exists = var:cossacks_estate_target } }
-					set_variable = { name = cossacks_estate_target value = 0.5 }
-				}
-				if = { limit = { not = { exists = var:dhimmi_estate_target } }
-					set_variable = { name = dhimmi_estate_target value = 0.5 }
-				}
-			}
-		}
-	}
-}
-
-smart_taxes_should_recalculate = {
+﻿smart_taxes_should_recalculate = {
 	is_shown = {
 		exists = var:smart_taxes_recalculate
 	}

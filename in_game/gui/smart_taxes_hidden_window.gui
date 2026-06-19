@@ -13,19 +13,26 @@ widget = {
 			visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_should_recalculate').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 			state = {
 				name = _show
-				duration = 0.5
+				next = smart_taxes_apply
+				on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_apply')]"
+			}
+			state = {
+				name = smart_taxes_apply
+				duration = 2
 				on_finish = "[GetScriptedGui('smart_taxes_clear_recalculate').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 			}
 			datacontext = "[GetEconomyView]"
 			datamodel = "[EconomyView.GetTaxRateSettings]"
 			item = {
 				widget = {
+					# Force vanilla auto-tax off; the mod replaces it.
+					# visible_at_creation = no fires _show only when auto-tax is on, so ToggleAutoTaxRate never turns it back on.
 					overlappingitembox = {
 						size = { 0 0 }
-						visible = "[And(TaxRateSetting.IsUsingAutoTaxRate, GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End))]"
+						visible_at_creation = no
+						visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
 						state = {
 							name = _show
-							trigger_on_create = yes
 							on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
 						}
 					}

@@ -18,8 +18,6 @@ smart_taxes_monthly_tick = {
 smart_taxes_apply_monthly_recompute = {
 	effect = {
 		if = { limit = { debug_only = yes } debug_log = "Smart Taxes: running monthly recompute" }
-		save_scope_as = country
-		smart_taxes_setup_defaults = {}
 		smart_taxes_recompute_tax_rates = {}
 	}
 }
