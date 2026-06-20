@@ -34,14 +34,11 @@
 }
 
 # Off-screen driver that applies smart tax rates when the recalculate flag is set.
-basic_dialog = {
+window = {
 	name = "smart_taxes_hidden_window"
 	widgetid = smart_taxes_hidden_window
 	layer = top
 	visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_should_recalculate').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
-	parentanchor = center
 	position = { -10000 1 }
-	blockoverride "content" {
-		smart_taxes_tax_setter = {}
-	}
+	smart_taxes_tax_setter = {}
 }
