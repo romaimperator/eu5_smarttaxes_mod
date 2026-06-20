@@ -6,26 +6,20 @@
 		add = scope:country.modifier:global_estate_satisfaction_recovery
 		if = { limit = { scope:estate_type = estate_type:nobles_estate }
 			add = scope:country.modifier:nobles_estate_satisfaction_recovery
-			max = scope:country.var:nobles_estate_target
 		} else_if = { limit = { scope:estate_type = estate_type:clergy_estate }
 			add = scope:country.modifier:clergy_estate_satisfaction_recovery
-			max = scope:country.var:clergy_estate_target
 		} else_if = { limit = { scope:estate_type = estate_type:burghers_estate }
 			add = scope:country.modifier:burghers_estate_satisfaction_recovery
-			max = scope:country.var:burghers_estate_target
 		} else_if = { limit = { scope:estate_type = estate_type:peasants_estate }
 			add = scope:country.modifier:peasants_estate_satisfaction_recovery
-			max = scope:country.var:peasants_estate_target
 		} else_if = { limit = { scope:estate_type = estate_type:tribes_estate }
 			add = scope:country.modifier:tribes_estate_satisfaction_recovery
-			max = scope:country.var:tribes_estate_target
 		} else_if = { limit = { scope:estate_type = estate_type:cossacks_estate }
 			add = scope:country.modifier:cossacks_estate_satisfaction_recovery
-			max = scope:country.var:cossacks_estate_target
 		} else_if = { limit = { scope:estate_type = estate_type:dhimmi_estate }
 			add = scope:country.modifier:dhimmi_estate_satisfaction_recovery
-			max = scope:country.var:dhimmi_estate_target
 		}
+		max = current_target_satisfaction
 	}
 	min = smart_taxes_estate_min_tax
 	max = smart_taxes_estate_max_tax
