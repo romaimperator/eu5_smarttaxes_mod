@@ -1,44 +1,47 @@
-﻿# Off-screen driver that applies smart tax rates when the recalculate flag is set.
-widget = {
+﻿types SmartTaxes {
+	type smart_taxes_tax_setter = widget {
+		state = {
+			name = smart_taxes_wait
+			trigger_on_create = yes
+			next = smart_taxes_apply
+			on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_apply')]"
+		}
+		state = {
+			name = smart_taxes_apply
+			duration = 0.5
+			on_finish = "[GetScriptedGui('smart_taxes_clear_recalculate').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			next = smart_taxes_wait
+		}
+		datacontext = "[GetEconomyView]"
+		datamodel = "[EconomyView.GetTaxRateSettings]"
+		item = {
+			widget = {
+				# Force vanilla auto-tax off; the mod replaces it.
+				# visible_at_creation = no fires _show only when auto-tax is on, so ToggleAutoTaxRate never turns it back on.
+				overlappingitembox = {
+					size = { 0 0 }
+					visible_at_creation = no
+					visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
+					state = {
+						name = _show
+						on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
+					}
+				}
+				smart_taxes_estate_tax_slider = {}
+			}
+		}
+	}
+}
+
+# Off-screen driver that applies smart tax rates when the recalculate flag is set.
+basic_dialog = {
 	name = "smart_taxes_hidden_window"
 	widgetid = smart_taxes_hidden_window
 	layer = top
-	visible = "[EqualTo_CFixedPoint('(CFixedPoint)0', '(CFixedPoint)0')]"
+	visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_should_recalculate').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+	parentanchor = center
 	position = { -10000 1 }
-	widget = {
-		visible = "[GetPlayer.Exists]"
-		# Rebuilds and re-fires _show each time the recalculate flag is set; tears down when it clears.
-		widget = {
-			size = { 0 0 }
-			visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_should_recalculate').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
-			state = {
-				name = _show
-				next = smart_taxes_apply
-				on_finish = "[PdxGuiWidget.TriggerAnimation('smart_taxes_apply')]"
-			}
-			state = {
-				name = smart_taxes_apply
-				duration = 0.5
-				on_finish = "[GetScriptedGui('smart_taxes_clear_recalculate').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-			}
-			datacontext = "[GetEconomyView]"
-			datamodel = "[EconomyView.GetTaxRateSettings]"
-			item = {
-				widget = {
-					# Force vanilla auto-tax off; the mod replaces it.
-					# visible_at_creation = no fires _show only when auto-tax is on, so ToggleAutoTaxRate never turns it back on.
-					overlappingitembox = {
-						size = { 0 0 }
-						visible_at_creation = no
-						visible = "[TaxRateSetting.IsUsingAutoTaxRate]"
-						state = {
-							name = _show
-							on_start = "[TaxRateSetting.ToggleAutoTaxRate]"
-						}
-					}
-					smart_taxes_estate_tax_slider = {}
-				}
-			}
-		}
+	blockoverride "content" {
+		smart_taxes_tax_setter = {}
 	}
 }
