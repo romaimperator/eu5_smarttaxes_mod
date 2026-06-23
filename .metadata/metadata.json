@@ -3,6 +3,7 @@
 	"id":	"romaimperator.smart_taxes",
 	"version":	"1.4.0",
 	"supported_game_version":	"1.3.*",
+	"smart_taxes_last_updated_game_version":	"1.3.6",
 	"short_description":	"Intelligent automation of your estates taxes. Tax rate will be as high as possible while still allowing satisfaction to recover at max recovery up to a configurable target satisfaction percent.\n\nChanges gui/economy_lateralview.gui but should be compatible with any mods that don't change that file.",
 	"tags":	["Government and Estates", "User Interface", "Utilities"],
 	"relationships":	[],
