@@ -1,0 +1,51 @@
+# vanilla: in_game/gui/economy_lateralview.gui
+# mod: in_game/gui/economy_lateralview.gui
+
+template EstateIncomeBreakdownTooltip {
+	ContextualTooltipType = {
+		blockoverride "title_text" {
+			datacontext = "[TaxRateSetting.GetEstate]"
+			text = "TAXING_ESTATE_INCOME_BREAKDOWN"
+		}
+		blockoverride "title_icon" {
+			icon = {
+				using = tooltip_title_icon_size
+				texture = "[GetEstateIcon(TaxRateSetting.GetEstate.GetType)]"
+				
+				datacontext = "[TaxRateSetting.GetEstate]"
+				tooltipwidget = {
+					using = Estate_tooltip
+				}
+			}
+		}
+
+		blockoverride "concept_link" {
+			text = [estate_tax_base|E]
+		}
+		blockoverride "tooltip_content" {
+			datacontext = "[TaxRateSetting.GetEstate]"
+			TooltipTextBlock = {																						
+				blockoverride "text"	{
+					text = "ESTATE_CURRENT_TAX_TT"
+				}
+			}
+			
+			TooltipStringPairList = {
+				visible = "[Not(StringIsEmpty(TaxRateSetting.GetTaxSettingsTooltip))]"
+				textcontext = "[TaxRateSetting.GetTaxSettingsTooltip]"
+			}
+
+			TooltipTextBlock = {
+				visible = "[Not(TaxRateSetting.GetEstate.CanCollectTaxes)]"
+				blockoverride "text" {
+					text = "[TaxRateSetting.GetEstate.GetCollectTaxesInfo]"
+				}
+			}
+		
+			TooltipStringPairList = {
+				visible = "[And(TaxRateSetting.GetEstate.CanCollectTaxes, Not(StringIsEmpty(TaxRateSetting.GetIncomeBreakdown)))]"
+				textcontext = "[TaxRateSetting.GetIncomeBreakdown]"
+			}
+		}
+	}
+}
