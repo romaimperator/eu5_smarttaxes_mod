@@ -54,6 +54,7 @@
           button_square_plus = {
             position = { 105 6 }
             size = { 15 15 }
+            tooltip_enabled = no
             onclick = "[GetScriptedGui('tge_stability_inc').Execute(GuiScope.SetRoot(Player.MakeScope).End)]"
           }
 
@@ -72,6 +73,7 @@
           button_square_minus = {
             position = { 0 6 }
             size = { 15 15 }
+            tooltip_enabled = no
             onclick = "[GetScriptedGui('tge_stability_dec').Execute(GuiScope.SetRoot(Player.MakeScope).End)]"
           }
 
