@@ -25,7 +25,7 @@
           using = layoutpolicy_expanding
           autoresize = no
           align = left|nobaseline
-          text = "EXPENSE_RESEARCH"
+          text = "RESEARCH_TEXT"
         }
 
         text_single = {

@@ -1,3 +1,24 @@
 ﻿smart_taxes_recompute_tax_rates = {
 	set_variable = { name = smart_taxes_recalculate value = yes }
 }
+
+# The flag keeps a player's own opt-outs from being turned back on when they switch country or reload.
+smart_taxes_setup_defaults = {
+	if = {
+		limit = { NOT = { exists = var:smart_taxes_defaults_applied } }
+		set_variable = { name = smart_taxes_defaults_applied value = yes }
+		add_to_variable_list = { name = smart_taxes_enabled_estates target = estate_type:nobles_estate }
+		add_to_variable_list = { name = smart_taxes_enabled_estates target = estate_type:clergy_estate }
+		add_to_variable_list = { name = smart_taxes_enabled_estates target = estate_type:burghers_estate }
+		add_to_variable_list = { name = smart_taxes_enabled_estates target = estate_type:peasants_estate }
+		add_to_variable_list = { name = smart_taxes_enabled_estates target = estate_type:tribes_estate }
+		add_to_variable_list = { name = smart_taxes_enabled_estates target = estate_type:cossacks_estate }
+		add_to_variable_list = { name = smart_taxes_enabled_estates target = estate_type:dhimmi_estate }
+		if = {
+			limit = { NOT = { exists = var:auto_coin_minting } }
+			# Vanilla's on value for auto minting: in_game/common/scripted_guis/economy_satisfaction_target.txt:266 (toggle_auto_coin_minting)
+			set_variable = { name = auto_coin_minting value = 1 }
+		}
+		smart_taxes_recompute_tax_rates = {}
+	}
+}

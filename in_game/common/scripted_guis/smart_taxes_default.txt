@@ -10,6 +10,34 @@ smart_taxes_clear_recalculate = {
 	}
 }
 
+smart_taxes_should_apply_defaults = {
+	is_shown = {
+		NOT = { exists = var:smart_taxes_defaults_applied }
+	}
+}
+
+smart_taxes_apply_defaults = {
+	effect = {
+		smart_taxes_setup_defaults = {}
+	}
+}
+
+# monthly_country_pulse skips the game-start month, so that one month is covered off the calendar day.
+smart_taxes_should_first_refresh = {
+	is_shown = {
+		current_day >= 28
+		NOT = { exists = var:smart_taxes_first_refresh_done }
+	}
+}
+
+smart_taxes_first_refresh = {
+	effect = {
+		if = { limit = { debug_only = yes } debug_log = "Smart Taxes: running first-month recompute" }
+		set_variable = { name = smart_taxes_first_refresh_done value = yes }
+		smart_taxes_recompute_tax_rates = {}
+	}
+}
+
 smart_taxes_enabled = {
 	saved_scopes = { estate_type }
 

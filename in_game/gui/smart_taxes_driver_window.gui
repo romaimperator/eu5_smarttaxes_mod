@@ -1,0 +1,29 @@
+widget = {
+	name = "smart_taxes_driver_window"
+	widgetid = smart_taxes_driver_window
+	layer = top
+	visible = "[EqualTo_CFixedPoint('(CFixedPoint)0', '(CFixedPoint)0')]"
+	position = { -10000 1 }
+
+	widget = {
+		size = { 0 0 }
+		# Without visible_at_creation = no, a loaded save creates this already shown and _show never fires.
+		visible_at_creation = no
+		visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_should_apply_defaults').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+		state = {
+			name = _show
+			on_start = "[GetScriptedGui('smart_taxes_apply_defaults').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		}
+	}
+
+	widget = {
+		size = { 0 0 }
+		# Covers the game-start month only; smart_taxes_monthly_tick has every month after it.
+		visible_at_creation = no
+		visible = "[And(GetPlayer.Exists, GetScriptedGui('smart_taxes_should_first_refresh').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+		state = {
+			name = _show
+			on_start = "[GetScriptedGui('smart_taxes_first_refresh').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		}
+	}
+}

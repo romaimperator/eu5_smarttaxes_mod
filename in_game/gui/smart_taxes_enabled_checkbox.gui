@@ -10,7 +10,7 @@
 		tooltipwidget = {
 			LeftClickButtonTooltip = {
 				blockoverride "onclick_text" {
-					text = "[SelectLocalization( GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', EstateType.MakeScope).End), 'DEACTIVATE_AUTO_TAX_RATE', 'ACTIVATE_AUTO_TAX_RATE' )]"
+					text = "[SelectLocalization( GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', EstateType.MakeScope).End), 'DEACTIVATE_AUTO_TAX_RATE', 'smart_taxes_activate_auto_tax_rate' )]"
 				}
 			}
 		}
