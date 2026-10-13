@@ -4,6 +4,7 @@
 # but you still want in search results.
 /.vscode
 /.idea
+.devcontainer/
 .DS_Store
 .env
 __pycache__/
