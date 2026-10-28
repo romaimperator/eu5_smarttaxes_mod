@@ -1,0 +1,167 @@
+types SmartTaxes {
+	type smart_taxes_target_adjustment_widget = widget {
+        size = { 55 24 }
+        hbox = {
+            # Smart Taxes: change visibility to show/hide when the Smart Taxes is enabled/disabled for this estate instead
+            visible = "[GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+            #visible = "[And(Not(TaxRateSetting.IsTaxRateSliderEnabled), Or(Not(TaxRateSetting.IsTaxRateSettingIncEnabled), Not(TaxRateSetting.IsTaxRateSettingDecEnabled)))]"
+
+            datacontext = "[TaxRateSetting.GetEstate]"
+            datacontext = "[TaxRateSetting.GetEstate.GetCountry]"
+            using = bg_number_container_bckg
+            blockoverride "number_container_extra" {
+                alpha = 0.4
+                margin = {1 -3}
+            }
+
+            button_square_minus = {
+                size = { 15 15 }
+                # Smart Taxes: remove the enable check since if this button is visible, automation is enabled and this should be usable
+                # enabled = "[TaxRateSetting.IsSatisfactionTargetDecEnabled]"
+                tooltipwidget = { BasicFunctionalTooltip = {} }
+                action_tooltip = {
+                    click_type = left
+                    click_mode = single
+                    click_modifier = default
+                    enabled = yes
+                    title = "SATISFACTION_TARGET_MINUS_1"
+                    on_action = "[GetScriptedGui('subtract_one_percent').Execute(GuiScope.SetRoot(TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+                }
+                action_tooltip = {
+                    click_type = left
+                    click_mode = single
+                    click_modifier = alt
+                    enabled = yes
+                    title = "SATISFACTION_TARGET_MINUS_10"
+                    on_action = "[GetScriptedGui('subtract_ten_percent').Execute(GuiScope.SetRoot(TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+                }
+                action_tooltip = {
+                    click_type = left
+                    click_mode = single
+                    click_modifier = shift
+                    enabled = yes
+                    title = "SATISFACTION_TARGET_SET_ZERO"
+                    on_action = "[GetScriptedGui('set_to_zero_percent').Execute(GuiScope.SetRoot(TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+                }
+                action_tooltip = {
+                    click_type = left
+                    click_mode = single
+                    click_modifier = ctrl
+                    enabled = yes
+                    title = "SATISFACTION_TARGET_MINUS_5"
+                    on_action = "[GetScriptedGui('subtract_five_percent').Execute(GuiScope.SetRoot(TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+                }
+            }
+
+            text_single = {
+                size = {25 20}
+                autoresize = no
+                using = Font_Size_Very_Small
+                raw_text = "[GuiScope.AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).AddScope('country', TaxRateSetting.GetEstate.GetCountry.MakeScope).ScriptValue('current_target_satisfaction')|%0]"
+                align = center
+                tooltipwidget = {
+                    SimpleContextualTooltipType = {
+                        blockoverride "title_icon" {
+                            icon = {
+                                using = tooltip_title_icon_size
+                                texture = "gfx/interface/icons/flat_icons/happy.dds"
+                            }
+                        }
+                        blockoverride "title_text" {
+                            text = "AUTOMATION_TARGET_SATISFACTION_TITLE"
+                        }
+                        lowpriotextcontext = "AUTOMATION_TARGET_SATISFACTION_TT"
+                    }
+                }
+            }
+
+            button_square_plus = {
+                size = { 15 15 }
+                # Smart Taxes: remove the enable check since if this button is visible, automation is enabled and this should be usable
+                # enabled = "[TaxRateSetting.IsSatisfactionTargetIncEnabled]"
+                tooltipwidget = { BasicFunctionalTooltip = {} }
+                action_tooltip = {
+                    click_type = left
+                    click_mode = single
+                    click_modifier = default
+                    enabled = yes
+                    title = "SATISFACTION_TARGET_PLUS_1"
+                    on_action = "[GetScriptedGui('add_one_percent').Execute(GuiScope.SetRoot(TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+                }
+                action_tooltip = {
+                    click_type = left
+                    click_mode = single
+                    click_modifier = alt
+                    enabled = yes
+                    title = "SATISFACTION_TARGET_PLUS_10"
+                    on_action = "[GetScriptedGui('add_ten_percent').Execute(GuiScope.SetRoot(TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+                }
+                action_tooltip = {
+                    click_type = left
+                    click_mode = single
+                    click_modifier = shift
+                    enabled = yes
+                    title = "SATISFACTION_TARGET_SET_HUNDRED"
+                    on_action = "[GetScriptedGui('set_to_one_hundred_percent').Execute(GuiScope.SetRoot(TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+                }
+                action_tooltip = {
+                    click_type = left
+                    click_mode = single
+                    click_modifier = ctrl
+                    enabled = yes
+                    title = "SATISFACTION_TARGET_PLUS_5"
+                    on_action = "[GetScriptedGui('add_five_percent').Execute(GuiScope.SetRoot(TaxRateSetting.GetEstate.GetCountry.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End)]"
+                }
+            }
+        }
+
+        hbox = {
+            # Smart Taxes: change visibility to show/hide when the Smart Taxes is enabled/disabled for this estate instead
+            visible = "[Not(GetScriptedGui('smart_taxes_enabled').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('estate_type', TaxRateSetting.GetEstate.GetType.MakeScope).End))]"
+            # visible = "[Or(TaxRateSetting.IsTaxRateSliderEnabled, And(TaxRateSetting.IsTaxRateSettingIncEnabled, TaxRateSetting.IsTaxRateSettingDecEnabled))]"
+            spacing = 1
+            text_single = {
+                autoresize = no
+                align = right|nobaseline
+                layoutpolicy_horizontal = expanding
+                size = { -1 20 }
+                using = Font_Size_Very_Small
+                visible = "[TaxRateSetting.HasImpact]"
+                raw_text = "[TaxRateSetting.GetImpact]"
+
+                datacontext = "[TaxRateSetting.GetEstate]"
+            }
+
+            icon = {
+                name = "sad face"
+                visible = "[LessThanOrEqualTo_CFixedPoint(TaxRateSetting.GetImpactValue,'(CFixedPoint)0.25')]"
+
+                size = { 14 14 }
+                texture = "gfx/interface/icons/flat_icons/sad.dds"
+                texture_density = 2
+            }
+
+            icon = {
+                name = "neutral face"
+                visible = "[BetweenInclusiveOfMax_CFixedPoint(TaxRateSetting.GetImpactValue,'(CFixedPoint)0.25', '(CFixedPoint)0.5')]"
+
+                size = { 14 14 }
+                texture = "gfx/interface/icons/flat_icons/neutral.dds"
+                texture_density = 2
+            }
+
+            icon = {
+                name = "happy face"
+                visible = "[GreaterThan_CFixedPoint(TaxRateSetting.GetImpactValue,'(CFixedPoint)0.5')]"
+
+                size = { 14 14 }
+                texture = "gfx/interface/icons/flat_icons/happy.dds"
+                texture_density = 2
+            }
+
+            tooltipwidget = {
+                using = estate_satisfaction_tooltip
+            }
+        }
+    }
+}
